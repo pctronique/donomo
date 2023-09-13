@@ -35,16 +35,12 @@ Modifier le contenu du fichier .env.example :
 NAME_PROJECT=dnjs
 NAME_NODEJS_CONTAINER=dnjs_httpd
 NAME_SGBD_CONTAINER=dnjs_mongo
-VALUE_NODEJS_PORT=3000
-VALUE_SGBD_PORT=27020
 ```
 Par le nom de votre projet, par exemple 'nameProject' :
 ```
 NAME_PROJECT=nameProject
 NAME_NODEJS_CONTAINER=nameProject_httpd
 NAME_SGBD_CONTAINER=nameProject_mongo
-VALUE_NODEJS_PORT=3000
-VALUE_SGBD_PORT=27020
 ```
 Créé un fichier "**.env**" à partir du fichier "**.env.example**" (copier/coller). <br />
 > [!WARNING]
