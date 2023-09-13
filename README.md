@@ -54,6 +54,7 @@ Créé un fichier "**.env**" à partir du fichier "**.env.example**" (copier/col
 Si vous avez besoin de modifier le port, merci de le faire dans le fichier "**.env**".<br />
 > [!WARNING]
 > ne surtout pas le faire dans le fichier "**.env.example**".<br />
+
 Un port de votre pc peut être utilisé par un autre projet, il faudra donc modifier celui-ci. Ce qui est vrai sur un pc, ne le sera pas sur les autres, donc on ne modifit pas les valeurs dans le fichier "**.env.example**".
 Il est préférable d'incrémenter à l'identique les ports du projet.
 Je dois incrémenter de 9 un des ports, je le fais aussi pour les autres. Ceci évite de se perdre dans les ports disponibles.
