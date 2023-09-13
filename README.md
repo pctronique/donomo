@@ -91,7 +91,7 @@ Votre code devra être placé dans le dossier "**project**".
 
 ## Mini-projet nodejs
 Il y a un mini-projet Nodejs pour vous montrer un exemple, mais vous pouvez le retirer en vidant le dossier "**project**".
-Lors de l'installation, il démarre le serveur Nodejs sur le mini-projet :<br />
+Lors de l'installation, il démarre le serveur Nodejs du mini-projet :<br />
 <img src="./images/Screenshot_20230913_155456.png" alt="exemple nodejs server" width="300" height="175">
 <br />vous pouvez le modifier dans le fichier "**install.sh**" :
 ```
