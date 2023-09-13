@@ -1,0 +1,31 @@
+# Adopt version 2 syntax:
+#   https://docs.docker.com/compose/compose-file/#/versioning
+version: '3'
+
+services:
+###########################
+# Setup the PHP container
+###########################
+    nodjs:
+        container_name: ${NAME_NODEJS_CONTAINER}
+        build: .docker/nodejs
+        restart: always
+        tty: true
+        stdin_open: true
+        depends_on:
+            - mongo
+        volumes:
+            - ./.docker/config/connection_server.json:/home/project/config/connection_server.json:rw
+            - ./.docker/config/connection_mongo.json:/home/project/config/connection_mongo.json:rw
+            - ./project:/home/project:rw
+            - ./projecttmp/logs/pm2:/root/.pm2/logs/:rw
+        ports:
+            - ${VALUE_NODEJS_PORT}:3000
+    mongo:
+        container_name: ${NAME_SGBD_CONTAINER}
+        image: mongo
+        volumes:
+           - ./projecttmp/mongo_data:/data/db
+        ports:
+            - ${VALUE_SGBD_PORT}:27017
+            

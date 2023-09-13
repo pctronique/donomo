@@ -1,0 +1,6 @@
+{
+    "type":"mongodb",
+    "host":"mongo",
+    "port":27017,
+    "base":"dnodejs"
+}
