@@ -53,7 +53,7 @@ Créé un fichier "**.env**" à partir du fichier "**.env.example**" (copier/col
 ### Modifier l'adresse de port
 Si vous avez besoin de modifier le port, merci de le faire dans le fichier "**.env**".<br />
 > [!WARNING]
-> ne surtout pas le faire dans le fichier "**.env.example**".<br />
+> Ne surtout pas le faire dans le fichier "**.env.example**".<br />
 
 Un port de votre pc peut être utilisé par un autre projet, il faudra donc modifier celui-ci. Ce qui est vrai sur un pc, ne le sera pas sur les autres, donc on ne modifit pas les valeurs dans le fichier "**.env.example**".
 Il est préférable d'incrémenter à l'identique les ports du projet.
