@@ -48,6 +48,9 @@ VALUE_SGBD_PORT=27020
 ```
 Créé un fichier "**.env**" à partir du fichier "**.env.example**" (copier/coller). <p><span style="color: red">Attention \de \conserver \le \fichier \"**.env.example**".</span><p/>
 $${\color{red}test}$$.
+<p style='color:red'>This is some red text.</p>
+<font color="red">This is some text!</font>
+These are <b style='color:red'>red words</b>.
 
 ### Modifier l'adresse de port
 Si vous avez besoin de modifier le port, merci de le faire dans le fichier "**.env**", $${\color{red}ne \surtout \pas \le \faire \dans \le \fichier \"**.env.example**"}$$.
