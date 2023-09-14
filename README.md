@@ -57,9 +57,9 @@ Créé un fichier "**.env**" à partir du fichier "**.env.example**" (copier/col
 ### Modifier l'adresse de port
 Si vous avez besoin de modifier le port, merci de le faire dans le fichier "**.env**".<br />
 > [!WARNING]
-> Ne surtout pas le faire dans le fichier "**.env.example**".<br />
+> Ne surtout pas le faire dans le fichier "**.env.example**".
 
-Un port de votre pc peut être utilisé par un autre projet, il faudra donc modifier celui-ci. Ce qui est vrai sur un pc, ne le sera pas sur les autres, donc on ne modifit pas les valeurs dans le fichier "**.env.example**".<br />
+<br />Un port de votre pc peut être utilisé par un autre projet, il faudra donc modifier celui-ci. Ce qui est vrai sur un pc, ne le sera pas sur les autres, donc on ne modifit pas les valeurs dans le fichier "**.env.example**".<br />
 Il est préférable d'incrémenter à l'identique les ports du projet.<br />
 Je dois incrémenter de 9 un des ports, je le fais aussi pour les autres. Ceci évite de se perdre dans les ports disponibles.<br />
 Exemple :<br />
@@ -92,13 +92,15 @@ FROM node:20.6.1
 <br />
 
 > [!NOTE]
-> Il n'est pas possible de choisir une version pour mongoDB, mais ceci ne pose pas de problème.<br /><br />
+> Il n'est pas possible de choisir une version pour mongoDB, mais ceci ne pose pas de problème.
+
+<br />
 
 > [!WARNING]
-> Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.<br />
+> Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.
 
 
-## Rechercher un package (Docker)
+<br />## Rechercher un package (Docker)
 Si vous avez besoin d'un package pour votre projet dans le conteneur. Vous pouvez rechercher les packages disponibles pour le conteneur.
 ```
 $ ./bin/terminal.sh
