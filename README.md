@@ -92,7 +92,7 @@ FROM node:20.6.1
 <br />
 
 > [!NOTE]
-> Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.<br /><br />
+> Il n'est pas possible de choisir une version pour mongoDB, mais ceci ne pose pas de problème.<br /><br />
 
 > [!WARNING]
 > Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.<br />
