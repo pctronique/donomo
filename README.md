@@ -75,13 +75,18 @@ $ ./install.sh
 
 ### Modifier les versions
 Sur le projet actuel, on utilise les nouvelles versions ce qui peut poser des problèmes sur le projet par la suite. Il est préférable d'utiliser la version utilisée lors de la création du projet.
+<br />[docker nodejs](https://hub.docker.com/_/node/)
 ```
 $ ./bin/terminal.sh
 # nodejs -v
+v20.6.1
 ```
 Dand le fichier "**.docker/angular/Dockerfile**", remplacé '**latest**' par la bonne version disponible pour docker :
 ```
 FROM node:latest
+```
+```
+FROM node:20.6.1
 ```
 
 ## Rechercher un package (Docker)
