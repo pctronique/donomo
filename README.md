@@ -89,6 +89,12 @@ FROM node:latest
 ```
 FROM node:20.6.1
 ```
+<br />
+> [!NOTE]
+> Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.<br /><br />
+> [!WARNING]
+> Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.<br />
+
 
 ## Rechercher un package (Docker)
 Si vous avez besoin d'un package pour votre projet dans le conteneur. Vous pouvez rechercher les packages disponibles pour le conteneur.
