@@ -25,6 +25,7 @@ La base docker pour un projet en nodejs. Contient une base d'un serveur nodejs.
     </li>
     <li><a href="#le-dossier-du-projet">Le dossier du projet</a></li>
     <li><a href="#mini-projet-nodejs">Mini projet nodejs</a></li>
+    <li><a href="#visualiser-les-messages-de-la-console-ou-les-logs">Visualiser les messages de la console ou les logs</a></li>
   </ol>
 </details>
 
@@ -124,3 +125,8 @@ Quand vous allez redémarrer le pc, il faudra relancer le serveur Nodejs avec la
 ```
 $ ./start.sh
 ```
+
+## Visualiser les messages de la console ou les logs
+Les messages de la console sont transmis dans un fichier et ne sont pas visibles sur le terminal.<br />
+* Message sur la console dans le fichier : "**projecttmp/logs/pm2/server-out.log**".
+* Message d'erreur sur la console dans le fichier : "**projecttmp/logs/pm2/server-error.log**".
