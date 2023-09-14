@@ -97,7 +97,7 @@ FROM node:20.6.1
 > [!NOTE]
 > Il n'est pas possible de choisir une version pour mongoDB, mais ceci ne pose pas de problème.
 
-<br />## Rechercher un package (Docker)
+## Rechercher un package (Docker)
 Si vous avez besoin d'un package pour votre projet dans le conteneur. Vous pouvez rechercher les packages disponibles pour le conteneur.
 ```
 $ ./bin/terminal.sh
