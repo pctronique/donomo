@@ -30,9 +30,9 @@ La base docker pour un projet en nodejs. Contient une base d'un serveur nodejs.
 </details>
 
 ## Installé à la base du projet docker
-* nodeJS
-* pm2
-* mongoDB
+* [docker nodeJS](https://hub.docker.com/_/node/)
+* pm2 (docker nodeJS)
+* [docker mongoDB](https://hub.docker.com/_/mongo)
 
 ## Création du conteneur (Docker)
 Vous devez avoir installé Docker. 
