@@ -11,6 +11,7 @@ La base docker pour un projet en nodejs. Contient une base d'un serveur nodejs.
             <li><a href="#le-fichier-env">Le fichier .env</a></li>
             <li><a href="#modifier-l-adresse-de-port">Modifier l'adresse de port</a></li>
             <li><a href="#installer-le-conteneur">Installer le conteneur</a></li>
+            <li><a href="#modifier-les-versions">Modifier les versions</a></li>
         </ul>
     </li>
     <li><a href="#rechercher-un-package-docker">Rechercher un package (Docker)</a></li>
@@ -64,6 +65,17 @@ VALUE_SGBD_PORT=27029
 Vous pouvez créer votre conteneur.
 ```
 $ ./install.sh
+```
+
+### Modifier les versions
+Sur le projet actuel, on utilise les nouvelles versions ce qui peut poser des problèmes sur le projet par la suite. Il est préférable d'utiliser la version utilisée lors de la création du projet.
+```
+$ ./bin/terminal.sh
+# nodejs -v
+```
+Dand le fichier "**.docker/angular/Dockerfile**", remplacé '**latest**' par la bonne version disponible pour docker :
+```
+FROM node:latest
 ```
 
 ## Rechercher un package (Docker)
