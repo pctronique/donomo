@@ -75,6 +75,9 @@ $ ./install.sh
 ```
 
 ### Modifier les versions
+> [!WARNING]
+> Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.
+
 Sur le projet actuel, on utilise les nouvelles versions ce qui peut poser des problèmes sur le projet par la suite. Il est préférable d'utiliser la version utilisée lors de la création du projet.
 <br />[docker nodejs](https://hub.docker.com/_/node/)
 ```
@@ -93,12 +96,6 @@ FROM node:20.6.1
 
 > [!NOTE]
 > Il n'est pas possible de choisir une version pour mongoDB, mais ceci ne pose pas de problème.
-
-<br />
-
-> [!WARNING]
-> Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard.
-
 
 <br />## Rechercher un package (Docker)
 Si vous avez besoin d'un package pour votre projet dans le conteneur. Vous pouvez rechercher les packages disponibles pour le conteneur.
