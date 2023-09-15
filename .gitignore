@@ -2,5 +2,6 @@
 /project/config/connection_server.json
 /project/config/connection_mongo.json
 /project/package-lock.json
+/project/updateProject.sh
 /projecttmp/
 /.env

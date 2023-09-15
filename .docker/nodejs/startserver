@@ -1,0 +1,13 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides: startserver
+# Required-Start:    $all
+# Required-Stop: 
+# Default-Start:     5 
+# Default-Stop:      6 
+# Short-Description: start nodejs server
+### END INIT INFO
+
+/home/updateProject.sh
+echo "0002" >> home/projecttmp/tmp/nodejs/test.log
+ 

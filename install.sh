@@ -1,5 +1,8 @@
 mkdir -p projecttmp
 mkdir -p projecttmp/logs
+mkdir -p projecttmp/logs/pm2
+mkdir -p projecttmp/tmp
+mkdir -p projecttmp/tmp/nodejs
 mkdir -p projecttmp/mongo_data
 
 chmod 777 -R project

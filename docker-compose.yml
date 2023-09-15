@@ -1,6 +1,6 @@
 # Adopt version 2 syntax:
 #   https://docs.docker.com/compose/compose-file/#/versioning
-version: '3'
+version: '3.27'
 
 services:
 ###########################
@@ -17,10 +17,14 @@ services:
         volumes:
             - ./.docker/config/connection_server.json:/home/project/config/connection_server.json:rw
             - ./.docker/config/connection_mongo.json:/home/project/config/connection_mongo.json:rw
+            - ./.docker/config/updateProject.sh:/home/project/updateProject.sh:rw
+            - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
             - ./project:/home/project:rw
             - ./projecttmp/logs/pm2:/root/.pm2/logs/:rw
+            - ./projecttmp/tmp/nodejs:/home/projecttmp/tmp/nodejs:rw
         ports:
             - ${VALUE_NODEJS_PORT}:3000
+
     mongo:
         container_name: ${NAME_SGBD_CONTAINER}
         image: mongo
