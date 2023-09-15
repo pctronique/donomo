@@ -29,7 +29,34 @@ services:
         container_name: ${NAME_SGBD_CONTAINER}
         image: mongo
         volumes:
-           - ./projecttmp/mongo_data:/data/db
+            - ./projecttmp/mongo_data:/data/db
+            - ./mongo-seed:/mongo-seed
+        environment:
+            - MONGO_INITDB_DATABASE=dnodejs
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=secret
+        command:
+            - /mongo-seed/import.sh
         ports:
             - ${VALUE_SGBD_PORT}:27017
-            
+       
+    mongo-express:
+        image: mongo-express
+        container_name: ${NAME_MOEXPRESS_CONTAINER}
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
+            - ME_CONFIG_MONGODB_URL=mongodb://root:secret@mongo:27017
+        links:
+            - mongo
+        ports:
+            - ${VALUE_MOEXPRESS_PORT}:8081
+        
+###########################
+# Setup the mailhog container
+###########################
+    mailhog:
+        container_name: ${NAME_MAILHOG_CONTAINER}
+        image: mailhog/mailhog
+        ports:
+            - ${VALUE_MAILHOG_DISPLAY_PORT}:8025
