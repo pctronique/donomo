@@ -24,7 +24,10 @@ services:
             - ./projecttmp/tmp/nodejs:/home/projecttmp/tmp/nodejs:rw
         ports:
             - ${VALUE_NODEJS_PORT}:3000
-
+        
+###########################
+# Setup the mongo container
+###########################
     mongo:
         container_name: ${NAME_SGBD_CONTAINER}
         image: mongo
@@ -35,11 +38,14 @@ services:
             - MONGO_INITDB_DATABASE=dnodejs
             - MONGO_INITDB_ROOT_USERNAME=root
             - MONGO_INITDB_ROOT_PASSWORD=secret
-        command:
-            - /mongo-seed/import.sh
+        #command:
+        #    - /mongo-seed/import.sh
         ports:
             - ${VALUE_SGBD_PORT}:27017
-       
+        
+###########################
+# Setup the mongo-express container
+###########################
     mongo-express:
         image: mongo-express
         container_name: ${NAME_MOEXPRESS_CONTAINER}
