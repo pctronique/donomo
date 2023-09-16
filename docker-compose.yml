@@ -7,8 +7,8 @@ services:
 # Setup the PHP container
 ###########################
     nodjs:
-        container_name: ${NAME_NODEJS_CONTAINER}
         build: .docker/nodejs
+        container_name: ${NAME_NODEJS_CONTAINER}
         restart: always
         tty: true
         stdin_open: true
@@ -17,7 +17,7 @@ services:
         volumes:
             - ./.docker/config/connection_server.json:/home/project/config/connection_server.json:rw
             - ./.docker/config/connection_mongo.json:/home/project/config/connection_mongo.json:rw
-            - ./.docker/config/updateProject.sh:/home/project/updateProject.sh:rw
+            - ./.docker/config/config_email.json:/home/project/config/config_email.json:rw
             - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
             - ./project:/home/project:rw
             - ./projecttmp/logs/pm2:/root/.pm2/logs/:rw
@@ -29,8 +29,8 @@ services:
 # Setup the mongo container
 ###########################
     mongo:
-        container_name: ${NAME_SGBD_CONTAINER}
         image: mongo
+        container_name: ${NAME_SGBD_CONTAINER}
         volumes:
             - ./projecttmp/mongo_data:/data/db
             - ./mongo-seed:/mongo-seed

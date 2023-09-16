@@ -1,7 +1,8 @@
 {
-    "host": "localhost",
-    "user": "root",
-    "password": "",
-    "database": "test",
-    "port": 3306
+    "type"   : "mongodb",
+    "host" : "mongo",
+    "port"   : 27017,
+    "name"   : "dnjs",
+    "user"   : "",
+    "pass"   : ""
 }

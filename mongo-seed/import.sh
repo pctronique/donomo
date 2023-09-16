@@ -1,3 +1,4 @@
 #! /bin/bash
 
-mongoimport --host mongodb --db test --collection census --type json --file /mongo-seed/people --jsonArray
+#mongoimport --host mongodb --db test --collection census --type json --file /mongo-seed/people --jsonArray
+echo "0001"

@@ -1,8 +1,8 @@
 {
     "type"   : "mongodb",
-    "server" : "mongo",
+    "host" : "mongo",
     "port"   : 27017,
-    "name"   : "dnodejs",
+    "name"   : "dnjs",
     "user"   : "root",
     "pass"   : "secret"
 }
