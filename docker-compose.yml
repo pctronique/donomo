@@ -20,6 +20,7 @@ services:
             - ./.docker/config/config_email.json:/home/project/config/config_email.json:rw
             - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
             - ./.docker/nodejs/updateProject.sh:/home/updateProject.sh:rw
+            - ./.env:/home/.env:rw
             - ./project:/home/project:rw
             - ./projecttmp/logs/pm2:/root/.pm2/logs/:rw
             - ./projecttmp/tmp/nodejs:/home/projecttmp/tmp/nodejs:rw

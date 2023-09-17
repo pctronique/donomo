@@ -199,9 +199,9 @@ Votre code devra être placé dans le dossier "**project**".
 Il y a un mini-projet Nodejs pour vous montrer un exemple, mais vous pouvez le retirer en vidant le dossier "**project**".<br />
 Lors de l'installation, il démarre le serveur Nodejs du mini-projet sur '**localhost:3000**' si vous n'avez pas modifié le port (sinon il faut modifier le numéro de port du lien) :<br />
 <img src="./images/screen63.jpg" alt="exemple nodejs server" width="300" height="175">
-<br />Vous pouvez modifier le démarrage de votre projet dans le fichier "**.docker/nodejs/updateProject.sh**" :
+<br />Vous pouvez modifier le démarrage de votre projet dans le fichier "**.env.example**" et aussi dans le fichier "**.env**" :
 ```
-pm2 $@ server.js --watch --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
+NAME_JS_SERVER=server.js
 ```
 Quand vous allez redémarrer le pc, il faudra relancer le serveur Nodejs avec la commande :
 ```
