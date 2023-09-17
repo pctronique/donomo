@@ -1,5 +1,8 @@
 FROM node:latest
 
+RUN apt-get update &&\ 
+    apt-get install -y --no-install-recommends apt-utils
+
 VOLUME "/home/project"
 WORKDIR "/home/project"
 
