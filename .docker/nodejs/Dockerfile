@@ -15,8 +15,6 @@ WORKDIR "/home/project"
 RUN npm install -y --no-install-recommends pm2 -g
 RUN npm install -y --no-install-recommends pm2-logrotate
 
-RUN npm install -y --no-install-recommends pm2-logrotate
-
-RUN updateProject.sh &
+#RUN updateProject.sh &
 
 #RUN /etc/init.d/startserver start
