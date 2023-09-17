@@ -1,6 +1,6 @@
 {
     "type"   : "mongodb",
-    "host"   : "dnjs_mongo",
+    "host"   : "mongo",
     "port"   : 27017,
     "name"   : "dnjs",
     "user"   : "root",
