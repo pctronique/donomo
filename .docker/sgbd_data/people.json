@@ -1,0 +1,10 @@
+[
+  {
+    "_id": { "$oid": "6505b1be378aadafd0eed883" },
+    "name": { "first": "Alan", "last": "Turing" },
+    "birth": { "$date": { "$numberLong": "-1815350400000" } },
+    "death": { "$date": { "$numberLong": "-491356800000" } },
+    "contribs": ["Turing machine", "Turing test", "Turingery"],
+    "views": 1250000
+  }
+]

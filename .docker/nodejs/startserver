@@ -9,5 +9,4 @@
 ### END INIT INFO
 
 /home/updateProject.sh
-echo "0002" >> home/projecttmp/tmp/nodejs/test.log
  

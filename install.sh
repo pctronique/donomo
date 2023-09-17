@@ -4,20 +4,20 @@ mkdir -p projecttmp/logs/pm2
 mkdir -p projecttmp/tmp
 mkdir -p projecttmp/tmp/nodejs
 mkdir -p projecttmp/mongo_data
+mkdir -p projecttmp/mongo-seed
 
 chmod 777 -R project
 chmod 777 -R projecttmp
 
 # creation du fichier .env
-if [ -e .env ]
+if [ ! -e .env ]
 then
-    echo ""
-else
-    echo ""
     cp .env.example .env
 fi
 
 docker-compose up -d
 
+./bin/import_sgbd.sh
+
 ./bin/npm.sh install
-./bin/pm2.sh start server.js --watch --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
+./start.sh

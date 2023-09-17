@@ -1,2 +1,0 @@
-{"_id":{"$oid":"6504b65129d8c4f7a086932e"},"name":{"first":"Alan","last":"Turing"},"birth":{"$date":{"$numberLong":"-1815350400000"}},"death":{"$date":{"$numberLong":"-491356800000"}},"contribs":["Turing machine","Turing test","Turingery"],"views":1250000}
-{"_id":{"$oid":"6504bb43907c8d292bb9b909"},"name":{"first":"Alan","last":"Turing"},"birth":{"$date":{"$numberLong":"-1815350400000"}},"death":{"$date":{"$numberLong":"-491356800000"}},"contribs":["Turing machine","Turing test","Turingery"],"views":1250000}

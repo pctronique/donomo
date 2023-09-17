@@ -29,17 +29,21 @@ services:
 # Setup the mongo container
 ###########################
     mongo:
-        image: mongo
+        image: mongo:${VALUE_SGBD_VERSION}
         container_name: ${NAME_SGBD_CONTAINER}
+        restart: always
         volumes:
             - ./projecttmp/mongo_data:/data/db
-            - ./mongo-seed:/mongo-seed
+            - ./projecttmp/mongo-seed/:/mongo-seed/
+            - ./.env:/mongo-seed/.env
+            - ./.docker/mongo/import.sh:/mongo-seed/import.sh
+            # start data
+            - ./.docker/sgbd_data/people.json:/mongo-seed/people.json
+            # end data
         environment:
-            - MONGO_INITDB_DATABASE=dnodejs
-            - MONGO_INITDB_ROOT_USERNAME=root
-            - MONGO_INITDB_ROOT_PASSWORD=secret
-        #command:
-        #    - /mongo-seed/import.sh
+            - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
         ports:
             - ${VALUE_SGBD_PORT}:27017
         
@@ -47,12 +51,13 @@ services:
 # Setup the mongo-express container
 ###########################
     mongo-express:
-        image: mongo-express
+        image: mongo-express:${VALUE_MOEXPRESS_VERSION}
         container_name: ${NAME_MOEXPRESS_CONTAINER}
+        restart: always
         environment:
-            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-            - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
-            - ME_CONFIG_MONGODB_URL=mongodb://root:secret@mongo:27017
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_ROOT_USERNAME}
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_ROOT_PASSWORD}
+            - ME_CONFIG_MONGODB_URL=mongodb://${MONGO_ROOT_USERNAME}:secret@mongo:27017
         links:
             - mongo
         ports:
@@ -62,7 +67,8 @@ services:
 # Setup the mailhog container
 ###########################
     mailhog:
+        image: mailhog/mailhog:${VALUE_MAILHOG_VERSION}
         container_name: ${NAME_MAILHOG_CONTAINER}
-        image: mailhog/mailhog
+        restart: always
         ports:
             - ${VALUE_MAILHOG_DISPLAY_PORT}:8025
