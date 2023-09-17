@@ -56,7 +56,9 @@ Il est conçu à partir de l'image du [docker nodeJS](https://hub.docker.com/_/n
 Il contiendra vos codes.<br />
 Il installe aussi dans le conteneur :<br />
 * [pm2](https://pm2.keymetrics.io/)
-<br /> C'est dans ce conteneur que vous allez placer vos codes nodeJS, dans le dossier "**project**".
+
+<br /> 
+C'est dans ce conteneur que vous allez placer vos codes nodeJS, dans le dossier "**project**" (qui est lié au conteneur).
 <br /><img src="./images/screen63.jpg" alt="exemple nodejs server" width="300" height="175"><br />
 
 ### Conteneur mailhog
@@ -79,6 +81,8 @@ J'ai mis en place un exemple avec la table people "**people.json**" :
 - ./.docker/sgbd_data/people.json:/mongo-seed/people.json
 # end data
 ```
+<br /><img src="./images/screen66.jpg" alt="exemple nodejs server" width="300" height="175"><br />
+
 > [!NOTE]
 > Vous pouvez changer de SGBD pour un SQL. Pour les projet en nodeJS on utilise principalement un SGBD NOSQL.
 
