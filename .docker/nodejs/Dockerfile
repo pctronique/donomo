@@ -13,7 +13,7 @@ WORKDIR "/home/project"
 #RUN update-rc.d startserver defaults
 
 RUN npm install -y --no-install-recommends pm2 -g
-RUN npm install -y --no-install-recommends pm2-logrotate
+RUN pm2 install pm2-logrotate
 
 #RUN updateProject.sh &
 

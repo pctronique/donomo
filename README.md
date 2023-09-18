@@ -56,6 +56,7 @@ Il est conçu à partir de l'image du [docker nodeJS](https://hub.docker.com/_/n
 Il contiendra vos codes.<br />
 Il installe aussi dans le conteneur :<br />
 * [pm2](https://pm2.keymetrics.io/)
+* [pm2-logrotate](https://www.npmjs.com/package/pm2-logrotate)
 
 <br /> 
 C'est dans ce conteneur que vous allez placer vos codes nodeJS, dans le dossier "**project**" (qui est lié au conteneur).
@@ -143,12 +144,35 @@ $ ./bin/terminal.sh
 # nodejs -v
 v20.6.1
 ```
-Dand le fichier "**.docker/angular/Dockerfile**", remplacé '**latest**' par la bonne version disponible pour docker :
+Dans le fichier "**.docker/angular/Dockerfile**", remplacé '**latest**' par la bonne version disponible pour docker :
 ```
 FROM node:latest
 ```
 ```
 FROM node:20.6.1
+```
+Pour pm2 :
+```
+$ ./bin/terminal.sh
+# pm2 --version
+5.3.0
+```
+Dans le fichier "**.docker/angular/Dockerfile**", remplacé :
+```
+RUN npm install -y --no-install-recommends pm2 -g
+```
+```
+RUN npm install -y --no-install-recommends pm2@5.3.0 -g
+```
+Pour pm2-logrotate :<br />
+Au moment de l'installation :
+<br /><img src="./images/Screenshot_20230918_061352.png" alt="exemple nodejs server" width="300" height="59"><br />
+Dans le fichier "**.docker/angular/Dockerfile**", remplacé :
+```
+RUN pm2 install pm2-logrotate
+```
+```
+RUN pm2 install pm2-logrotate@2.7.0
 ```
 
 <br />
