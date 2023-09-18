@@ -178,7 +178,7 @@ RUN pm2 install pm2-logrotate@2.7.0
 <br />
 
 > [!NOTE]
-> Vous n'êtes pas obligé à modifier la version des autres conteneurs.
+> Vous n'êtes pas obligé de modifier la version des autres conteneurs.
 
 <br />
 
