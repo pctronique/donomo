@@ -1,4 +1,5 @@
-# dnjs (Docker Nodejs)
+# donomo (DOcker NOdejs MOngodb)
+V1.0.0
 
 <details>
   <summary>Table des matières</summary>
@@ -31,9 +32,12 @@
             <li><a href="#dans-dockerfile">Dans Dockerfile</a></li>
         </ul>
     </li>
+    <li><a href="#logs-et-info-conteneur-docker">Logs et info conteneur (Docker)</a></li>
     <li><a href="#le-dossier-du-projet">Le dossier du projet</a></li>
     <li><a href="#mini-projet-nodejs">Mini projet nodejs</a></li>
+    <li><a href="#les-commandes-nodejs-dans-le-mini-projet">Les commandes nodejs dans le mini-projet</a></li>
     <li><a href="#visualiser-les-messages-de-la-console-ou-les-logs">Visualiser les messages de la console ou les logs</a></li>
+    <li><a href="#server-start-stop-restart">Server start|stop|restart</a></li>
   </ol>
 </details>
 
@@ -43,7 +47,7 @@ La base docker pour un projet en nodeJS. Ceci est une base, vous pouvez le modif
 > Vous devez installer docker pour pouvoir l'utiliser.
 
 ### L'avantage d'utiliser docker
-Lorsque vos faites un projet avec docker vous devez transmettre la totalité du projet, les fichiers de création des conteneurs et le code. Pour ce projet, vous devez transmettre le contenu en totalité du dossier "**dnjs**" (**que vous pouvez et surtout devez le renommer au nom de votre projet**) dans un git.<br />
+Lorsque vos faites un projet avec docker vous devez transmettre la totalité du projet, les fichiers de création des conteneurs et le code. Pour ce projet, vous devez transmettre le contenu en totalité du dossier "**donomo**" (**que vous pouvez et surtout devez le renommer au nom de votre projet**) dans un git.<br />
 Les avantages :<br />
 * Pas de programme à installer sur votre pc (à part docker et un éditeur ou IDE)
 * Travailler à plusieurs avec les mêmes conteneurs à l'identique
@@ -106,11 +110,11 @@ Pour la création du conteneur docker pour le projet.
 ### Le fichier .env
 Modifier le contenu du fichier "**.env.example**" :
 ```
-NAME_PROJECT=dnjs
-NAME_NODEJS_CONTAINER=dnjs_nodejs
-NAME_SGBD_CONTAINER=dnjs_mongo
-NAME_MOEXPRESS_CONTAINER=dnjs_moexpress
-NAME_MAILHOG_CONTAINER=dnjs_mailhog
+NAME_PROJECT=donomo
+NAME_NODEJS_CONTAINER=donomo_nodejs
+NAME_SGBD_CONTAINER=donomo_mongo
+NAME_MOEXPRESS_CONTAINER=donomo_moexpress
+NAME_MAILHOG_CONTAINER=donomo_mailhog
 ```
 Par le nom de votre projet, par exemple 'nameProject' :
 ```
@@ -223,6 +227,40 @@ $ ./bin/terminal.sh
 # apt install name_package
 ```
 
+## Logs et info conteneur (Docker)
+Vous pouvez avoir besoin de visualiser les logs d'un conteneur si celui-ci ne démarre pas, pour trouver le problème par exemple. Pour ce faire :
+```
+$ ./bin/container_logs.sh
+Options:
+   --nodejs
+   --mongo
+   --mongo-express
+   --mailhog
+   --helps
+   [id ou nom du conteneur]
+$ ./bin/container_logs.sh --nodejs
+```
+Vous pouvez avoir besoin d'information sur l'un des conteneurs, pour trouver sa version par exemple. Pour ce faire :
+```
+$ ./bin/container_info.sh 
+Options:
+   --nodejs
+   --mongo
+   --mongo-express
+   --mailhog
+   --helps
+   [id ou nom du conteneur]
+$ ./bin/container_info.sh --mailhog
+```
+<br />
+> [!WARNING]
+> Il contient beaucoup d'information sous un format json et ce n'est pas facile de le lire sur le terminal, il est préférable de le mettre dans un fichier json.
+<br />
+Pour mettre les informations dans un fichier json :
+```
+$ ./bin/container_info.sh --mailhog >> mailhog_info.json
+```
+
 ### Dans Dockerfile
 Quand vous installez un package, vous devez aussi le rajouter dans le fichier "**.docker/linux_agcc/Dockerfile**", pour le conserver. Vous devez ajouter la ligne suivante à la fin du fichier avec le bon nom de package.
 ```
@@ -245,7 +283,56 @@ Quand vous allez redémarrer le pc, il faudra relancer le serveur Nodejs avec la
 $ ./start.sh
 ```
 
+### Packages installés dans le mini-projet
+Lors de la création du projet, il y a l'installation de package que vous pouvez retrouver dans le fichier "**./bin/createProject.sh**"
+```
+docker exec $NAME_ANGULAR_CONTAINER bash -c "cd $FOLDER_PROJECT_ANGULAR/ && npm install nodemailer"
+docker exec $NAME_ANGULAR_CONTAINER bash -c "cd $FOLDER_PROJECT_ANGULAR/ && npm install mongodb"
+```
+> [!NOTE]
+> Vous pouvez les retirer si vous en avez pas besoin.
+
+### Options pour la création du projet angular
+Il est possible de créer un projet avec des options, comme l'utilisation de sass ou less.( [ng new](https://angular.io/cli/new) )<br />
+```
+$ ./bin/createProject.sh --help
+Options:
+    --style      The file extension or preprocessor to use for style files.              css | scss | sass | less
+```
+En ligne de commande :
+```
+$ ./bin/createProject.sh --style=scss
+```
+Ou dans le fichier "**install.sh**" :
+```
+./bin/createProject.sh --style=scss
+#./bin/updateProject.sh
+./start.sh
+```
+
+## Les commandes nodejs dans le mini-projet
+Vous allez avoir besoin de faire des commandes nodejs sur votre code, pour ce faire :
+```
+$ ./bin/terminal.sh
+# npm install mongodb
+```
+
 ## Visualiser les messages de la console ou les logs
 Les messages de la console sont transmis dans un fichier et ne sont pas visibles sur le terminal.<br />
-* Message sur la console dans le fichier : "**projecttmp/logs/pm2/server-out.log**".
-* Message d'erreur sur la console dans le fichier : "**projecttmp/logs/pm2/server-error.log**".
+* Message sur la console dans le fichier : "**projecttmp/logs/pm2/pm2-logrotate-out.log**".
+* Message d'erreur sur la console dans le fichier : "**projecttmp/logs/pm2/pm2-logrotate-error.log**".
+
+## Server start|stop|restart
+Vous pouvez avoir besoin de redémarrer votre serveur, il est possible de le faire facilement avec une commande :
+```
+$ ./bin/server.sh 
+Options:
+   start
+   stop
+   restart
+   reload
+   --helps
+$ ./bin/server.sh start
+$ ./bin/server.sh stop
+$ ./bin/server.sh restart
+```
