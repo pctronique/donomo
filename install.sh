@@ -9,6 +9,13 @@ mkdir -p projecttmp/mongo-seed
 chmod 777 -R project
 chmod 777 -R projecttmp
 
+
+ # creation du fichier package.json
+if [ ! -e project/package.json ]
+then
+    cp .docker/config/package.json project/package.json
+fi
+
 # creation du fichier .env
 if [ ! -e .env ]
 then
@@ -19,5 +26,6 @@ docker-compose up -d
 
 ./bin/import_sgbd.sh
 
+./bin/createProject.sh
 ./bin/npm.sh install
 ./start.sh

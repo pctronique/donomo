@@ -21,6 +21,7 @@ V1.0.0
             <li><a href="#le-fichier-env">Le fichier .env</a></li>
             <li><a href="#modifier-l-adresse-de-port">Modifier l'adresse de port</a></li>
             <li><a href="#installer-le-conteneur">Installer le conteneur</a></li>
+            <li><a href="#modifier-le-fichier-d-installation">Modifier le fichier d'installation</a></li>
             <li><a href="#modifier-les-versions">Modifier les versions</a></li>
         </ul>
     </li>
@@ -149,6 +150,21 @@ Vous pouvez créer votre conteneur.
 ```
 $ ./install.sh
 ```
+
+### Modifier le fichier d'installation
+Après l'installation, il faudra modifier le contenu du fichier "**install.sh**" :
+```
+./bin/createProject.sh
+./bin/npm.sh install
+./start.sh
+```
+Par :
+```
+#./bin/createProject.sh
+./bin/npm.sh install
+./start.sh
+```
+Si ce n'est pas déjà fait.
 
 ### Modifier les versions
 > [!WARNING]
@@ -286,8 +302,17 @@ $ ./start.sh
 ### Packages installés dans le mini-projet
 Lors de la création du projet, il y a l'installation de package que vous pouvez retrouver dans le fichier "**./bin/createProject.sh**"
 ```
-docker exec $NAME_ANGULAR_CONTAINER bash -c "cd $FOLDER_PROJECT_ANGULAR/ && npm install nodemailer"
-docker exec $NAME_ANGULAR_CONTAINER bash -c "cd $FOLDER_PROJECT_ANGULAR/ && npm install mongodb"
+docker exec -it $NAME_NODEJS_CONTAINER npm install cookie-session
+docker exec -it $NAME_NODEJS_CONTAINER npm install express
+docker exec -it $NAME_NODEJS_CONTAINER npm install express-session
+docker exec -it $NAME_NODEJS_CONTAINER npm install express-socket.io-session
+docker exec -it $NAME_NODEJS_CONTAINER npm install mongodb
+docker exec -it $NAME_NODEJS_CONTAINER npm install morgan
+docker exec -it $NAME_NODEJS_CONTAINER npm install nodemailer
+docker exec -it $NAME_NODEJS_CONTAINER npm install object-hash
+docker exec -it $NAME_NODEJS_CONTAINER npm install serve-favicon
+docker exec -it $NAME_NODEJS_CONTAINER npm install serve-static
+docker exec -it $NAME_NODEJS_CONTAINER npm install socket.io
 ```
 > [!NOTE]
 > Vous pouvez les retirer si vous en avez pas besoin.
