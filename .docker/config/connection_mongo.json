@@ -2,7 +2,7 @@
     "type"   : "mongodb",
     "host"   : "mongo",
     "port"   : 27017,
-    "name"   : "dnjs",
+    "name"   : "donomo",
     "user"   : "root",
     "pass"   : "secret"
 }

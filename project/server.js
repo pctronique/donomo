@@ -24,5 +24,8 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "./index.html");
 });
 
+// require("./exemples/sgbd");
+// require("./exemples/email");
+
 // mise en route du serveur
 server.listen(connection_server.port, connection_server.host);
