@@ -35,7 +35,12 @@ V1.0.0
     </li>
     <li><a href="#logs-et-info-conteneur-docker">Logs et info conteneur (Docker)</a></li>
     <li><a href="#le-dossier-du-projet">Le dossier du projet</a></li>
-    <li><a href="#mini-projet-nodejs">Mini projet nodejs</a></li>
+    <li>
+        <a href="#mini-projet-nodejs">Mini projet nodejs</a>
+        <ul>
+            <li><a href="#packages-installés-dans-le-mini-projet">Packages installés dans le mini-projet</a></li>
+        </ul>
+    </li>
     <li><a href="#les-commandes-nodejs-dans-le-mini-projet">Les commandes nodejs dans le mini-projet</a></li>
     <li><a href="#visualiser-les-messages-de-la-console-ou-les-logs">Visualiser les messages de la console ou les logs</a></li>
     <li><a href="#server-start-stop-restart">Server start|stop|restart</a></li>
