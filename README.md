@@ -299,10 +299,6 @@ Lors de l'installation, il démarre le serveur Nodejs du mini-projet sur '**loca
 ```
 NAME_JS_SERVER=server.js
 ```
-Quand vous allez redémarrer le pc, il faudra relancer le serveur Nodejs avec la commande :
-```
-$ ./start.sh
-```
 
 ### Packages installés dans le mini-projet
 Lors de la création du projet, il y a l'installation de package que vous pouvez retrouver dans le fichier "**./bin/createProject.sh**"

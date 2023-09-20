@@ -6,7 +6,6 @@ done < ${0%/*}/../.env
 
 d_start () {
    docker container start $NAME_NODEJS_CONTAINER
-   docker exec -it $NAME_NODEJS_CONTAINER /etc/init.d/startserver start 
 }
 
 d_stop () {

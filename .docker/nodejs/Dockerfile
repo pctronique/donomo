@@ -6,15 +6,12 @@ RUN apt-get update &&\
 VOLUME "/home/project"
 WORKDIR "/home/project"
 
-#COPY startserver /etc/init.d/
-#COPY updateProject.sh /home
+COPY startserver /etc/init.d/
 
-#RUN chmod +x /etc/init.d/startserver
-#RUN update-rc.d startserver defaults
+RUN chmod +x /etc/init.d/startserver
+RUN update-rc.d startserver defaults
 
 RUN npm install -y --no-install-recommends pm2 -g
 RUN pm2 install pm2-logrotate
 
-#RUN updateProject.sh &
-
-#RUN /etc/init.d/startserver start
+CMD service startserver start && tail -F /var/log/nodejs/error.log

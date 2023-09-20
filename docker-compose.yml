@@ -24,14 +24,9 @@ services:
             - ./project:/home/project:rw
             - ./projecttmp/logs/pm2:/root/.pm2/logs/:rw
             - ./projecttmp/tmp/nodejs:/home/projecttmp/tmp/nodejs:rw
+            - ./projecttmp/logs/nodejs:/var/log/nodejs/:rw
         ports:
             - ${VALUE_NODEJS_PORT}:3000
-        #entrypoint:
-        #    - /etc/init.d/startserver
-        #    - restart
-        #command: ["/etc/init.d/startserver", "restart"]
-        #command: bash -c "/etc/init.d/startserver restart"
-        #command: /etc/init.d/startserver restart
 
 ###########################
 # Setup the mongo container

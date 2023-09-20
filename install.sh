@@ -4,7 +4,7 @@ mkdir -p projecttmp/logs/pm2
 mkdir -p projecttmp/tmp
 mkdir -p projecttmp/tmp/nodejs
 mkdir -p projecttmp/mongo_data
-mkdir -p projecttmp/mongo-seed
+mkdir -p projecttmp/projecttmp/logs/nodejs
 
 chmod 777 -R project
 chmod 777 -R projecttmp
