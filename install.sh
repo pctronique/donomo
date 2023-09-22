@@ -31,4 +31,6 @@ if docker-compose up --build -d ; then
     ./bin/createProject.sh
     #./bin/updateProject.sh
     ./start.sh
+
+    ./bin/install/end_install.sh
 fi
