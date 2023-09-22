@@ -204,6 +204,11 @@ $ ./install.sh
 > [!NOTE]
 > Vous devez faire '$ ./install.sh', même après avoir récupéré le projet de votre git.
 
+<br />
+
+> [!NOTE]
+> Vous devez faire '$ ./install.sh', même après avoir récupéré le projet de votre git.
+
 ### Modifier les versions
 > [!WARNING]
 > Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard. Surtout pour le conteneur qui contient le code.
