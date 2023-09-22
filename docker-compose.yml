@@ -15,9 +15,9 @@ services:
         depends_on:
             - mongo
         volumes:
-            - ./.docker/config/connection_server.json:/home/project/config/connection_server.json:rw
-            - ./.docker/config/connection_mongo.json:/home/project/config/connection_mongo.json:rw
-            - ./.docker/config/config_email.json:/home/project/config/config_email.json:rw
+            - ./.docker/config/connection_server.json:/home/project/www/config/connection_server.json:rw
+            - ./.docker/config/connection_mongo.json:/home/project/www/config/connection_mongo.json:rw
+            - ./.docker/config/config_email.json:/home/project/www/config/config_email.json:rw
             - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
             - ./.docker/nodejs/updateProject.sh:/home/updateProject.sh:rw
             - ./.env:/home/.env:rw

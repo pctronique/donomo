@@ -1,8 +1,7 @@
-/project/node_modules/
-/project/config/connection_server.json
-/project/config/connection_mongo.json
-/project/config/config_email.json
-/project/package-lock.json
-/project/updateProject.sh
+/project/www/node_modules/
+/project/www/config/connection_server.json
+/project/www/config/connection_mongo.json
+/project/www/config/config_email.json
+/project/www/package-lock.json
 /projecttmp/
 /.env
