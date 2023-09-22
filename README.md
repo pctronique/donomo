@@ -63,7 +63,7 @@ Vous devez placer votre code dans le dossier "**project/www/**" .
 > Le serveur démarre automatique au démarrage du conteneur, vous n'avez normalement pas besoin de le démarrer par vous-même.
 
 ### L'avantage d'utiliser docker
-Lorsque vos faites un projet avec docker vous devez transmettre la totalité du projet, les fichiers de création des conteneurs et le code. Pour ce projet, vous devez transmettre le contenu en totalité du dossier "**donomo**" (**que vous pouvez et surtout devez le renommer au nom de votre projet**) dans un git.<br />
+Lorsque vous faites un projet avec docker vous devez transmettre la totalité du projet, les fichiers de création des conteneurs et le code. Pour ce projet, vous devez transmettre le contenu en totalité du dossier "**donomo**" (**que vous pouvez et surtout devez le renommer au nom de votre projet**) dans un git.<br />
 Les avantages :<br />
 * Pas de programme à installer sur votre pc (à part docker et un éditeur ou IDE)
 * Travailler à plusieurs avec les mêmes conteneurs à l'identique
@@ -121,12 +121,11 @@ Ceci est une petite partie des [SGBD](https://fr.wikipedia.org/wiki/Syst%C3%A8me
 
 ### Les fichiers de configurations
 Vous pouvez configurer votre serveur ou le php :
-* php.ini : dans le dossier ".docker/php/"
-* xdebug.ini : dans le dossier ".docker/php/"
-* httpd.conf : dans le dossier ".docker/apache/" (pour apache)<br />
+* connection_server.json : dans le dossier ".docker/config/"
 
 > [!WARNING]
-> Si vous modifiez les configurations, il faudra redémarrer le conteneur : " [Server start|stop|restart](#server-start-stop-restart) ". 
+> Si vous modifiez les configurations, il faudra redémarrer le conteneur : " [Server start|stop|restart](#server-start-stop-restart) ". <br />
+> Vous n'avez pas besoin de le modifier et il doit conserver l'adresse du port du conteneur (pas mettre celui de votre pc).
 
 
 ## Création du conteneur (Docker)
@@ -329,17 +328,17 @@ NAME_JS_SERVER=server.js
 ### Packages installés dans le mini-projet
 Lors de la création du projet, il y a l'installation de package que vous pouvez retrouver dans le fichier "**./bin/createProject.sh**"
 ```
-docker exec -it $NAME_NODEJS_CONTAINER npm install cookie-session
-docker exec -it $NAME_NODEJS_CONTAINER npm install express
-docker exec -it $NAME_NODEJS_CONTAINER npm install express-session
-docker exec -it $NAME_NODEJS_CONTAINER npm install express-socket.io-session
-docker exec -it $NAME_NODEJS_CONTAINER npm install mongodb
-docker exec -it $NAME_NODEJS_CONTAINER npm install morgan
-docker exec -it $NAME_NODEJS_CONTAINER npm install nodemailer
-docker exec -it $NAME_NODEJS_CONTAINER npm install object-hash
-docker exec -it $NAME_NODEJS_CONTAINER npm install serve-favicon
-docker exec -it $NAME_NODEJS_CONTAINER npm install serve-static
-docker exec -it $NAME_NODEJS_CONTAINER npm install socket.io
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install cookie-session"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install express"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install express-session"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install express-socket.io-session"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install mongodb"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install morgan"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install nodemailer"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install object-hash"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install serve-favicon"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install serve-static"
+docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install socket.io"
 ```
 > [!NOTE]
 > Vous pouvez les retirer si vous en avez pas besoin.
@@ -348,10 +347,11 @@ docker exec -it $NAME_NODEJS_CONTAINER npm install socket.io
 
 ### Les fichiers de configurations du projet
 Vous pouvez configurer celui-ci :
-* config_sgbd.php : dans le dossier ".docker/config/"
+* config_email.json : dans le dossier ".docker/config/"
+* connection_mongo.json : dans le dossier ".docker/config/"
 
 > [!WARNING]
-> Ne pas modifier le fichier "**config_sgbd.php**" du dossier "**project/www/config**" qui sera et restera vide. 
+> Ne pas modifier les fichiers "**config_sgbd.php**" et "**connection_mongo.php**" du dossier "**project/www/config**" qui sont et resteront vide. 
 
 
 <br />
@@ -360,6 +360,7 @@ Vous pouvez configurer celui-ci :
 Vous allez avoir besoin de faire des commandes nodejs sur votre code, pour ce faire :
 ```
 $ ./bin/terminal.sh
+# cd www
 # npm install mongodb
 ```
 
