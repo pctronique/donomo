@@ -29,6 +29,6 @@ if docker-compose up --build -d ; then
     ./bin/import_sgbd.sh
 
     ./bin/createProject.sh
-    ./bin/npm.sh install
+    #./bin/updateProject.sh
     ./start.sh
 fi
