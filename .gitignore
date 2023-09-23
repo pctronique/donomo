@@ -4,4 +4,5 @@
 /project/www/config/config_email.json
 /project/www/package-lock.json
 /projecttmp/
+/install_tmp
 /.env
