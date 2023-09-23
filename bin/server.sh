@@ -5,11 +5,11 @@ do
 done < ${0%/*}/../.env
 
 d_start () {
-   docker container start $NAME_NODEJS_CONTAINER
+   docker container start $NAME_PROJECT_CONTAINER
 }
 
 d_stop () {
-   docker container stop $NAME_NODEJS_CONTAINER
+   docker container stop $NAME_PROJECT_CONTAINER
 }
  
 d_restart () {

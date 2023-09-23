@@ -8,7 +8,7 @@ services:
 ###########################
     nodjs:
         build: .docker/nodejs
-        container_name: ${NAME_NODEJS_CONTAINER}
+        container_name: ${NAME_PROJECT_CONTAINER}
         restart: always
         tty: true
         stdin_open: true
@@ -26,7 +26,7 @@ services:
             - ./projecttmp/tmp/nodejs:/home/projecttmp/tmp/nodejs:rw
             - ./projecttmp/logs/nodejs:/var/log/nodejs/:rw
         ports:
-            - ${VALUE_NODEJS_PORT}:3000
+            - ${VALUE_PROJECT_PORT}:3000
 
 ###########################
 # Setup the mongo container
@@ -54,8 +54,8 @@ services:
 # Setup the mongo-express container
 ###########################
     mongo-express:
-        image: mongo-express:${VALUE_MOEXPRESS_VERSION}
-        container_name: ${NAME_MOEXPRESS_CONTAINER}
+        image: mongo-express:${VALUE_SGBD_DISPLAY_VERSION}
+        container_name: ${NAME_SGBD_DISPLAY_CONTAINER}
         restart: always
         environment:
             - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_ROOT_USERNAME}
@@ -64,14 +64,14 @@ services:
         links:
             - mongo
         ports:
-            - ${VALUE_MOEXPRESS_PORT}:8081
+            - ${VALUE_SGBD_DISPLAY_PORT}:8081
         
 ###########################
 # Setup the mailhog container
 ###########################
     mailhog:
-        image: mailhog/mailhog:${VALUE_MAILHOG_VERSION}
-        container_name: ${NAME_MAILHOG_CONTAINER}
+        image: mailhog/mailhog:${VALUE_MAIL_DISPLAY_VERSION}
+        container_name: ${NAME_MAIL_DISPLAY_CONTAINER}
         restart: always
         ports:
-            - ${VALUE_MAILHOG_DISPLAY_PORT}:8025
+            - ${VALUE_MAIL_DISPLAY_DISPLAY_PORT}:8025

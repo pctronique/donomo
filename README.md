@@ -184,10 +184,10 @@ Il est préférable d'incrémenter à l'identique les ports du projet.<br />
 Si je dois incrémenter de 9 un des ports (je conserve la valeur d'incrémentation la plus haute), je le fais aussi pour les autres dans le fichier "**.env**". Ceci évite de se perdre dans les ports disponibles.<br />
 Exemple :<br />
 ```
-VALUE_NODEJS_PORT=3009
+VALUE_PROJECT_PORT=3009
 VALUE_SGBD_PORT=27029
-VALUE_MOEXPRESS_PORT=8089
-VALUE_MAILHOG_DISPLAY_PORT=8029
+VALUE_SGBD_DISPLAY_PORT=8089
+VALUE_MAIL_DISPLAY_DISPLAY_PORT=8029
 ```
 
 ### Installer le conteneur
@@ -257,8 +257,8 @@ RUN pm2 install pm2-logrotate@2.7.0
 Pour modifier la version des autres conteneurs, c'est dans le fichier "**.env.example**" :
 ```
 VALUE_SGBD_VERSION=latest
-VALUE_MOEXPRESS_VERSION=latest
-VALUE_MAILHOG_VERSION=latest
+VALUE_SGBD_DISPLAY_VERSION=latest
+VALUE_MAIL_DISPLAY_VERSION=latest
 ```
 
 
@@ -333,17 +333,17 @@ NAME_JS_SERVER=server.js
 ### Packages installés dans le mini-projet
 Lors de la création du projet, il y a l'installation de package que vous pouvez retrouver dans le fichier "**./bin/createProject.sh**"
 ```
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install cookie-session"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install express"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install express-session"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install express-socket.io-session"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install mongodb"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install morgan"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install nodemailer"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install object-hash"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install serve-favicon"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install serve-static"
-docker exec $NAME_NODEJS_CONTAINER bash -c "cd $FOLDER_PROJECT_NODEJS && npm install socket.io"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install cookie-session"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express-session"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express-socket.io-session"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install mongodb"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install morgan"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install nodemailer"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install object-hash"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install serve-favicon"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install serve-static"
+docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install socket.io"
 ```
 > [!NOTE]
 > Vous pouvez les retirer si vous en avez pas besoin.

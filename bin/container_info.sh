@@ -22,7 +22,7 @@ else
     container=$@
     case "$container" in
         --nodejs)
-            container=$NAME_NODEJS_CONTAINER
+            container=$NAME_PROJECT_CONTAINER
             ;;
     
         --mongo)
@@ -30,11 +30,11 @@ else
             ;;
 
         --mongo-express)
-            container=$NAME_MOEXPRESS_CONTAINER
+            container=$NAME_SGBD_DISPLAY_CONTAINER
             ;;
 
         --mailhog)
-            container=$NAME_MAILHOG_CONTAINER
+            container=$NAME_MAIL_DISPLAY_CONTAINER
             ;;
     esac
 
