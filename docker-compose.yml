@@ -44,9 +44,9 @@ services:
             - ./.docker/sgbd_data/people.json:/mongo-seed/people.json
             # end data
         environment:
-            - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
-            - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
-            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+            - MONGO_INITDB_DATABASE=${SGBD_DATABASE}
+            - MONGO_INITDB_ROOT_USERNAME=${SGBD_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${SGBD_ROOT_PASSWORD}
         ports:
             - ${VALUE_SGBD_PORT}:27017
         
@@ -58,9 +58,9 @@ services:
         container_name: ${NAME_SGBD_DISPLAY_CONTAINER}
         restart: always
         environment:
-            - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_ROOT_USERNAME}
-            - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_ROOT_PASSWORD}
-            - ME_CONFIG_MONGODB_URL=mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongo:27017
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=${SGBD_ROOT_USERNAME}
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=${SGBD_ROOT_PASSWORD}
+            - ME_CONFIG_MONGODB_URL=mongodb://${SGBD_ROOT_USERNAME}:${SGBD_ROOT_PASSWORD}@mongo:27017
         links:
             - mongo
         ports:
