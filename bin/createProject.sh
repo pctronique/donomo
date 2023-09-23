@@ -1,8 +1,11 @@
+#!/bin/bash
 while read line  
 do   
    export $line
 done < ${0%/*}/../.env
-${0%/*}/install/in_install.sh
+if ! ${0%/*}/install/in_install.sh ; then
+  exit 1
+fi
 docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install cookie-session"
 docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express"
 docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express-session"

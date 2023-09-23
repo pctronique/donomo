@@ -1,3 +1,4 @@
+#!/bin/bash
 # vérifier l'existance du fichier .env
 if [ ! -e ${0%/*}/../../.env ]
 then
@@ -7,3 +8,5 @@ then
     ${0%/*}/message_bis.sh
     exit 1
 fi
+
+exit 0

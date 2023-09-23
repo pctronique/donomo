@@ -1,5 +1,4 @@
 #!/bin/bash
-
 FILE_CREATE=".\/bin\/createProject.sh"
 FILE_UPDATE=".\/bin\/updateProject.sh"
 FILE_START=".\/bin\/install\/start_install.sh"
@@ -13,3 +12,5 @@ sed -i "s/$DESACTIVE$FILE_UPDATE/$FILE_UPDATE/" $FILE
 sed -i "s/$FILE_START/$DESACTIVE$FILE_START/" $FILE
 sed -i "s/$FILE_END/$DESACTIVE$FILE_END/" $FILE
 sed -i "s/$DESACTIVE$FILE_MESSAGE/$FILE_MESSAGE/" $FILE
+
+exit 0

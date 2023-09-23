@@ -15,9 +15,9 @@ services:
         depends_on:
             - mongo
         volumes:
-            - ./.docker/config/connection_server.json:/home/project/www/config/connection_server.json:rw
-            - ./.docker/config/connection_mongo.json:/home/project/www/config/connection_mongo.json:rw
-            - ./.docker/config/config_email.json:/home/project/www/config/config_email.json:rw
+            - ./config/connection_server.json:/home/project/www/config/connection_server.json:rw
+            - ./config/connection_mongo.json:/home/project/www/config/connection_mongo.json:rw
+            - ./config/config_email.json:/home/project/www/config/config_email.json:rw
             - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
             - ./.docker/nodejs/updateProject.sh:/home/updateProject.sh:rw
             - ./.env:/home/.env:rw
@@ -41,14 +41,12 @@ services:
             - ./.env:/mongo-seed/.env
             - ./.docker/mongo/import.sh:/mongo-seed/import.sh
             # start data
-            - ./.docker/sgbd_data/people.json:/mongo-seed/people.json
+            - ./config/sgbd_data/people.json:/mongo-seed/people.json
             # end data
         environment:
             - MONGO_INITDB_DATABASE=${SGBD_DATABASE}
             - MONGO_INITDB_ROOT_USERNAME=${SGBD_ROOT_USERNAME}
             - MONGO_INITDB_ROOT_PASSWORD=${SGBD_ROOT_PASSWORD}
-        ports:
-            - ${VALUE_SGBD_PORT}:27017
         
 ###########################
 # Setup the mongo-express container
@@ -74,4 +72,4 @@ services:
         container_name: ${NAME_MAIL_DISPLAY_CONTAINER}
         restart: always
         ports:
-            - ${VALUE_MAIL_DISPLAY_DISPLAY_PORT}:8025
+            - ${VALUE_MAIL_DISPLAY_PORT}:8025

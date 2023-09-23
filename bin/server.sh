@@ -43,7 +43,7 @@ else
 
       *)
          echo "Usage: ./bin/server.sh {start|stop|restart|reload|helps}"
-         exit 1
+         exit 0
          ;;
 
    esac

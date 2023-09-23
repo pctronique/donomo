@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ ! -e ${0%/*}/../.env ]
 then
     echo "Il manque le fichier '.env'."
@@ -5,3 +6,5 @@ then
     ${0%/*}/message_bis.sh
     exit 1
 fi
+
+exit 0

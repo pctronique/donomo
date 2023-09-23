@@ -1,36 +1,65 @@
-./bin/install/start_install.sh
+#!/bin/bash
+case "$1" in
+  --del-port)
+    rm -f "${0%/*}/.env"
+    ;;
+   
+  --help)
+    echo "Options:"
+    echo "   --del-port"
+    echo "   --helps"
+    exit 0
+    ;;
 
-#./bin/install/message.sh
+esac
 
-if [ ! -e .env ]
+if [ ! -e ${0%/*}/.env ]
 then
+  if ! ${0%/*}/bin/install/create_env_exp.sh ; then
+    exit 1
+  fi
+fi
+
+if [ ! -e ${0%/*}/install_tmp/type_install ]
+then
+    echo "Un problème c'est produit lors de l'installation"
     exit 1
 fi
 
-mkdir -p projecttmp
-mkdir -p projecttmp/logs
-mkdir -p projecttmp/logs/pm2
-mkdir -p projecttmp/tmp
-mkdir -p projecttmp/tmp/nodejs
-mkdir -p projecttmp/mongo_data
-mkdir -p projecttmp/projecttmp/logs/nodejs
+while read line  
+do   
+   export $line
+done < ${0%/*}/install_tmp/type_install
 
-chmod 777 -R project
-chmod 777 -R projecttmp
+mkdir -p ${0%/*}/projecttmp
+mkdir -p ${0%/*}/projecttmp/logs
+mkdir -p ${0%/*}/projecttmp/logs/pm2
+mkdir -p ${0%/*}/projecttmp/tmp
+mkdir -p ${0%/*}/projecttmp/tmp/nodejs
+mkdir -p ${0%/*}/projecttmp/mongo_data
+mkdir -p ${0%/*}/projecttmp/projecttmp/logs/nodejs
 
- # creation du fichier package.json
-if [ ! -e project/www/package.json ]
-then
-    cp .docker/config/package.json project/www/package.json
-fi
+chmod 777 -R ${0%/*}/project
+chmod 777 -R ${0%/*}/projecttmp
 
 # creation du docker du projet
 if docker-compose up --build -d ; then
-    ./bin/import_sgbd.sh
 
-    ./bin/createProject.sh
-    #./bin/updateProject.sh
-    ./start.sh
+  ./bin/import_sgbd.sh
 
-    ./bin/install/end_install.sh
+  if [ ! -f "$FILE_EXP" ]
+  then
+    if ! ${0%/*}/bin/createProject.sh ; then
+      exit 1
+    fi
+  else
+    if ! ${0%/*}/bin/updateProject.sh ; then
+      exit 1
+    fi
+  fi
+
+  ./start.sh
+
+  mkdir -p "${0%/*}/projecttmp"
+
 fi

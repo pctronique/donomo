@@ -40,7 +40,8 @@ case "$1" in
 
     *)
         echo "Usage: /etc/init.d/$daemon_NAME {start|stop|restart|reload}"
-        exit 1
+        exit 0
         ;;
 esac
+
 exit 0

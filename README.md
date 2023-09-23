@@ -185,9 +185,8 @@ Si je dois incrémenter de 9 un des ports (je conserve la valeur d'incrémentati
 Exemple :<br />
 ```
 VALUE_PROJECT_PORT=3009
-VALUE_SGBD_PORT=27029
 VALUE_SGBD_DISPLAY_PORT=8089
-VALUE_MAIL_DISPLAY_DISPLAY_PORT=8029
+VALUE_MAIL_DISPLAY_PORT=8029
 ```
 
 ### Installer le conteneur
