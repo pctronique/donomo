@@ -76,6 +76,10 @@ then
   if ! ${0%/*}/modif_name_project.sh ; then
     exit 1
   fi
+
+  if ! ${0%/*}/modif_name_base.sh ; then
+    exit 1
+  fi
 fi
 
 cp "$FOLDER_ENV_DEF/env_port" "$FOLDER_ENV_TMP/env_port"
