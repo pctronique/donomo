@@ -47,3 +47,5 @@ else
     docker logs --details $container
 
 fi
+
+exit 0

@@ -1,6 +1,8 @@
 #!/bin/bash
 FOLDER_BASE="${0%/*}/../.."
-FOLDER_ENV_DEF="$FOLDER_BASE/.docker/file_env"
+FOLDER_DOCKER="$FOLDER_BASE/.docker"
+FOLDER_DOCKER_CONF="$FOLDER_DOCKER/config"
+FOLDER_ENV_DEF="$FOLDER_DOCKER/file_env"
 FOLDER_ENV_TMP="$FOLDER_BASE/install_tmp"
 ENV_DEF="$FOLDER_ENV_DEF/.env"
 FILE_EXP="$FOLDER_BASE/.env.example"
@@ -30,6 +32,16 @@ cp "$FOLDER_ENV_DEF/env_other" "$FOLDER_ENV_TMP/env_other"
 if [ ! -f "$FOLDER_ENV_TMP/type_install" ]
 then
   echo "TYPE_INSTALL_PROJECT=$TYPE_EX" >> "$FOLDER_ENV_TMP/type_install"
+fi
+
+if [ ! -f "$FOLDER_DOCKER/$DOCKER_FOLDER_PROJECT/Dockerfile" ]
+then
+  cp "$FOLDER_DOCKER/$DOCKER_FOLDER_PROJECT/Dockerfile.example" "$FOLDER_DOCKER/$DOCKER_FOLDER_PROJECT/Dockerfile"
+fi
+
+if [ ! -f "$FOLDER_BASE/docker-compose.yml" ]
+then
+  cp "$FOLDER_DOCKER_CONF/docker-compose.yml.example" "$FOLDER_BASE/docker-compose.yml"
 fi
 
 COLOR_QUESTION=$'\e[90m'

@@ -64,4 +64,6 @@ if docker-compose up --build -d ; then
 
   rm -f -r "${0%/*}/install_tmp"
 
+  ${0%/*}/bin/install/display_web.sh
+
 fi

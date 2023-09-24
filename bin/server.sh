@@ -30,12 +30,10 @@ fi
 case "$1" in
    start|stop)
       d_${1}
-      exit 0
       ;;
    
    restart|reload)
       d_restart
-      exit 0
       ;;
    
    *)
@@ -46,8 +44,8 @@ case "$1" in
       echo "   restart    : Pour redémarrer le serveur."
       echo "   reload     : Pour redémarrer le serveur."
       echo "   --helps    : Pour afficher l'aide."
-      exit 0
       ;;
 
-   esac
-fi
+esac
+
+exit 0

@@ -47,3 +47,5 @@ else
     docker container inspect $container
 
 fi
+
+exit 0

@@ -22,3 +22,5 @@ docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install s
 docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install serve-static"
 docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install socket.io"
 docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install"
+
+exit 0
