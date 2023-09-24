@@ -23,7 +23,7 @@ services:
             - ./.env:/home/.env:rw
             - ./project:/home/project:rw
             - ./projecttmp/logs/pm2:/root/.pm2/logs/:rw
-            - ./projecttmp/tmp/nodejs:/home/projecttmp/tmp/nodejs:rw
+            - ./projecttmp/tmp/nodejs:/var/log/tmp/nodejs:rw
             - ./projecttmp/logs/nodejs:/var/log/nodejs/:rw
         ports:
             - ${VALUE_PROJECT_PORT}:3000
