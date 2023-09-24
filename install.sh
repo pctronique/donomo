@@ -48,7 +48,7 @@ chmod 777 -R ${0%/*}/projecttmp
 # creation du docker du projet
 if docker-compose up --build -d ; then
 
-  ./bin/import_sgbd.sh
+  ${0%/*}/bin/import_sgbd.sh
 
   if [ ! -f "$FILE_EXP" ]
   then
@@ -61,8 +61,8 @@ if docker-compose up --build -d ; then
     fi
   fi
 
-  ./start.sh
+  ${0%/*}/start.sh
 
-  mkdir -p "${0%/*}/projecttmp"
+  rm -f -r "${0%/*}/projecttmp"
 
 fi

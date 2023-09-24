@@ -23,7 +23,7 @@ then
     echo "   --mongo-express"
     echo "   --mailhog"
     echo "   --helps"
-    echo "   [id ou nom du conteneur] "
+    echo "   [id ou nom du conteneur]"
 else
     container=$@
     case "$container" in
