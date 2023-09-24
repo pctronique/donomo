@@ -16,6 +16,7 @@ fi
 
 if [[ "$option" = "--helps" ]]
 then
+    echo "Vous pouvez choissir d'afficher les informations d'un conteneur avec la commande : $ ./container_info.sh [option]"
     echo "Options:"
     echo "   --nodejs"
     echo "   --mongo"
