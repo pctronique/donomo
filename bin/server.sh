@@ -9,11 +9,15 @@ do
 done < ${0%/*}/../.env
 
 d_start () {
-   docker container start $NAME_PROJECT_CONTAINER
+   rm -f -r "/tmp/mess_project_docker.log"
+   docker container start $NAME_PROJECT_CONTAINER >> /tmp/mess_project_docker.log
+   rm -f -r "/tmp/mess_project_docker.log"
 }
 
 d_stop () {
-   docker container stop $NAME_PROJECT_CONTAINER
+   rm -f -r "/tmp/mess_project_docker.log"
+   docker container stop $NAME_PROJECT_CONTAINER >> /tmp/mess_project_docker.log
+   rm -f -r "/tmp/mess_project_docker.log"
 }
  
 d_restart () {

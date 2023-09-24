@@ -41,8 +41,10 @@ mkdir -p ${0%/*}/projecttmp/tmp/nodejs
 mkdir -p ${0%/*}/projecttmp/mongo_data
 mkdir -p ${0%/*}/projecttmp/projecttmp/logs/nodejs
 
-chmod 777 -R ${0%/*}/project
-chmod 777 -R ${0%/*}/projecttmp
+rm -f -r "/tmp/error_chmod_docker.log"
+chmod 777 -R ${0%/*}/project 2> /tmp/error_chmod_docker.log
+chmod 777 -R ${0%/*}/projecttmp 2> /tmp/error_chmod_docker.log
+rm -f -r "/tmp/error_chmod_docker.log"
 
 # creation du docker du projet
 if docker-compose up --build -d ; then
