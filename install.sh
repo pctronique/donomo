@@ -23,16 +23,15 @@ then
   fi
 fi
 
-if [ ! -e ${0%/*}/install_tmp/type_install ]
+if [ -e ${0%/*}/install_tmp/type_install ]
 then
-    echo "Un problème s'est produit lors de l'installation."
-    exit 1
+  while read line  
+  do   
+    export $line
+  done < ${0%/*}/install_tmp/type_install
+else
+  TYPE_INSTALL_PROJECT="update"
 fi
-
-while read line  
-do   
-   export $line
-done < ${0%/*}/install_tmp/type_install
 
 mkdir -p ${0%/*}/projecttmp
 mkdir -p ${0%/*}/projecttmp/logs
@@ -50,7 +49,7 @@ if docker-compose up --build -d ; then
 
   ${0%/*}/bin/import_sgbd.sh
 
-  if [ ! -f "$FILE_EXP" ]
+  if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
     if ! ${0%/*}/bin/createProject.sh ; then
       exit 1
@@ -63,6 +62,6 @@ if docker-compose up --build -d ; then
 
   ${0%/*}/start.sh
 
-  rm -f -r "${0%/*}/projecttmp"
+  rm -f -r "${0%/*}/install_tmp"
 
 fi
