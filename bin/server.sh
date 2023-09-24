@@ -1,4 +1,8 @@
 #!/bin/bash
+if ! ${0%/*}/install/message_create_container.sh ; then
+   exit 1
+fi
+
 while read line  
 do   
    export $line
@@ -23,28 +27,27 @@ then
     option="--helps"
 fi
 
-if [[ "$option" = "--helps" ]]
-then
-    echo "Options:"
-    echo "   start"
-    echo "   stop"
-    echo "   restart"
-    echo "   reload"
-    echo "   --helps"
-else
-   case "$1" in
-      start|stop)
-         d_${1}
-         ;;
+case "$1" in
+   start|stop)
+      d_${1}
+      exit 0
+      ;;
    
-      restart|reload)
-         d_restart
-         ;;
-
-      *)
-         echo "Usage: ./bin/server.sh {start|stop|restart|reload|helps}"
-         exit 0
-         ;;
+   restart|reload)
+      d_restart
+      exit 0
+      ;;
+   
+   *)
+      echo "$ .server.sh [option]"
+      echo "Options:"
+      echo "   start      : Pour démarrer le serveur."
+      echo "   stop       : Pour arrêter le serveur."
+      echo "   restart    : Pour redémarrer le serveur."
+      echo "   reload     : Pour redémarrer le serveur."
+      echo "   --helps    : Pour afficher l'aide."
+      exit 0
+      ;;
 
    esac
 fi

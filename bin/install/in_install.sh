@@ -1,7 +1,5 @@
 #!/bin/bash
-if [ ! -f "${0%/*}/../../.env" ]
-then
-  echo "Il manque le fichier .env"
+if ! ${0%/*}/message_create_container.sh ; then
   exit 1
 fi
 

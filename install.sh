@@ -1,13 +1,16 @@
 #!/bin/bash
 case "$1" in
   --del-port)
-    rm -f "${0%/*}/.env"
+    rm -f -r "${0%/*}/.env"
     ;;
    
   --help)
+    echo "$ .install.sh"
+    echo "Ou"
+    echo "$ .install.sh [option]"
     echo "Options:"
-    echo "   --del-port"
-    echo "   --helps"
+    echo "   --del-port : Pour modifier le numéros des ports."
+    echo "   --helps    : Pour afficher l'aide."
     exit 0
     ;;
 
@@ -22,7 +25,7 @@ fi
 
 if [ ! -e ${0%/*}/install_tmp/type_install ]
 then
-    echo "Un problème c'est produit lors de l'installation"
+    echo "Un problème s'est produit lors de l'installation."
     exit 1
 fi
 

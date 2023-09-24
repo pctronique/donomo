@@ -1,4 +1,8 @@
 #!/bin/bash
+if ! ${0%/*}/install/message_create_container.sh ; then
+   exit 1
+fi
+
 while read line  
 do   
    export $line
@@ -18,7 +22,7 @@ then
     echo "   --mongo-express"
     echo "   --mailhog"
     echo "   --helps"
-    echo "   [id ou nom du conteneur]"
+    echo "   [id ou nom du conteneur] "
 else
     container=$@
     case "$container" in

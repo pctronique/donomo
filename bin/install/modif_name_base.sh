@@ -6,7 +6,7 @@ FILE_DATA="$FILE_CONFIG/sgbd_data"
 
 if [ ! -e $FICHIER_ENV_EXA ]
 then
-    echo "Il manque le fichier '.env.example'."
+    echo "Problème lors de l'installation, il manque un fichier de base pour la création des variables d'environnement."
     exit 1
 fi
 
