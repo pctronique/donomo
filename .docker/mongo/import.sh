@@ -5,6 +5,11 @@ then
    exit 1
 fi
 
+while read line  
+do   
+   export $line
+done < ${0%/*}/.env
+
 rm -f -r "/tmp/install_sgbd.txt"
 
 TAB_INSTALL=()
@@ -19,16 +24,6 @@ then
         fi
     done < "${0%/*}/table_install.txt"
 fi
-
-for value in "${TAB_INSTALL[@]}"
-do
-     echo $value
-done
-
-while read line  
-do   
-   export $line
-done < ${0%/*}/.env
 
 for entry in `ls ${0%/*}/*.json 2> "/tmp/install_sgbd.txt"`; do
 
@@ -45,5 +40,6 @@ for entry in `ls ${0%/*}/*.json 2> "/tmp/install_sgbd.txt"`; do
     if [ "$IS_RECUP" = "true" ]
     then
         mongoimport -u=$SGBD_ROOT_USERNAME -p=$SGBD_ROOT_PASSWORD -h=mongo --authenticationDatabase=admin --db $SGBD_DATABASE --type json --file /mongo-seed/$entry --jsonArray
+        echo "$entry" >> "${0%/*}/table_install.txt"
     fi
 done

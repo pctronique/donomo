@@ -7,6 +7,7 @@ while read line
 do   
    export $line
 done < ${0%/*}/../.env
+
 if ! ${0%/*}/install/in_install.sh ; then
   exit 1
 fi
