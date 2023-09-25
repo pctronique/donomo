@@ -36,11 +36,12 @@ fi
 mkdir -p ${0%/*}/projecttmp
 mkdir -p ${0%/*}/projecttmp/logs
 mkdir -p ${0%/*}/projecttmp/logs/pm2
+mkdir -p ${0%/*}/projecttmp/logs/nodejs
 mkdir -p ${0%/*}/projecttmp/tmp
 mkdir -p ${0%/*}/projecttmp/tmp/nodejs
 mkdir -p ${0%/*}/projecttmp/mongo_data
 
-touch projecttmp/logs/nodejs/error.log
+touch ${0%/*}/projecttmp/logs/nodejs/error.log
 
 rm -f -r "/tmp/error_chmod_docker.log"
 chmod 777 -R ${0%/*}/project 2> /tmp/error_chmod_docker.log
