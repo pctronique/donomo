@@ -1,9 +1,9 @@
+/.env
+/projecttmp
+/tmp_install
+/install_tmp
 /project/www/node_modules/
 /project/www/config/connection_server.json
 /project/www/config/connection_mongo.json
 /project/www/config/config_email.json
 /project/www/package-lock.json
-/projecttmp/
-/tmp_install
-/install_tmp
-/.env

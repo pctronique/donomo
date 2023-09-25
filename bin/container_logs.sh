@@ -25,7 +25,7 @@ then
     echo "   --helps"
     echo "   [id ou nom du conteneur]"
 else
-    container=$@
+    container=$1
     case "$container" in
         --nodejs)
             container=$NAME_PROJECT_CONTAINER
