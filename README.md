@@ -100,7 +100,7 @@ Il est possible d'entrer des tables lors de sa création, pour se faire il faudr
 J'ai mis en place un exemple avec la table people "**people.json**" :
 ```
 # start data
-- ./.docker/sgbd_data/people.json:/mongo-seed/people.json
+- ./config/sgbd_data/people.json:/mongo-seed/people.json
 # end data
 ```
 
@@ -130,7 +130,7 @@ Ceci est une petite partie des [SGBD](https://fr.wikipedia.org/wiki/Syst%C3%A8me
 
 ### Les fichiers de configurations
 Vous pouvez configurer votre serveur ou le php :
-* connection_server.json : dans le dossier ".docker/config/"
+* connection_server.json : dans le dossier "config/"
 
 > [!WARNING]
 > Si vous modifiez les configurations, il faudra redémarrer le conteneur : " [Server start|stop|restart](#server-start-stop-restart) ". <br />
@@ -386,8 +386,8 @@ docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install s
 
 ### Les fichiers de configurations du projet
 Vous pouvez configurer celui-ci :
-* config_email.json : dans le dossier ".docker/config/"
-* connection_mongo.json : dans le dossier ".docker/config/"
+* config_email.json : dans le dossier "config/"
+* connection_mongo.json : dans le dossier "config/"
 
 > [!WARNING]
 > Ne pas modifier les fichiers "**config_sgbd.php**" et "**connection_mongo.php**" du dossier "**project/www/config**" qui sont et resteront vide. 
