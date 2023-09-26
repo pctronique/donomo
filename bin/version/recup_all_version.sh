@@ -17,6 +17,6 @@ do
    export $line
 done < "${0%/*}/../../$PROJECT_TMP_MAIN/env_version.txt"
 
-sed -i "s/FROM node:latest/FROM node:$NODEJS_VERSION-latest/" $FOLDER_DOCKER/$DOCKER_FOLDER_PROJECT/Dockerfile
+sed -i "s/FROM node:latest/FROM node:$NODEJS_VERSION/" $FOLDER_DOCKER/$DOCKER_FOLDER_PROJECT/Dockerfile
 sed -i "s/RUN npm install -y --no-install-recommends pm2 -g/RUN npm install -y --no-install-recommends pm2@$PM2_VERSION -g/" $FOLDER_DOCKER/$DOCKER_FOLDER_PROJECT/Dockerfile
 sed -i "s/RUN pm2 install pm2-logrotate/RUN pm2 install pm2-logrotate@$PM2_LOGROT_VERSION/" $FOLDER_DOCKER/$DOCKER_FOLDER_PROJECT/Dockerfile
