@@ -365,19 +365,19 @@ NAME_JS_SERVER=server.js
 ```
 
 ### Packages installés dans le mini-projet
-Lors de la création du projet, il y a l'installation de package que vous pouvez retrouver dans le fichier "**./bin/createProject.sh**"
+Lors de la création du projet, il y a l'installation de package que vous pouvez retrouver dans le fichier "**./bin/install/packages_install.list**"
 ```
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install cookie-session"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express-session"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express-socket.io-session"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install mongodb"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install morgan"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install nodemailer"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install object-hash"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install serve-favicon"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install serve-static"
-docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install socket.io"
+cookie-session
+express
+express-session
+express-socket.io-session
+mongodb
+morgan
+nodemailer
+object-hash
+serve-favicon
+serve-static
+socket.io
 ```
 > [!NOTE]
 > Vous pouvez les retirer si vous en avez pas besoin.
