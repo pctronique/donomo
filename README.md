@@ -97,10 +97,10 @@ Ce conteneur va vous permettre de visualiser votre base de données mongodb (NOS
 Il est conçu à partir de l'image du [docker mongo](https://hub.docker.com/_/mongo).<br />
 Ce conteneur contiendra votre base de donnée. Il est possible de visualiser son contenu à partir du [conteneur mongo-express](#conteneur-mongo-express)<br />
 Il est possible d'entrer des tables lors de sa création, pour se faire il faudra récupérer les tables sous format json et les placer dans un dossier et modifier le fichier "**docker-compose.yml**".<br />
-J'ai mis en place un exemple avec la table people "**people.json**" :
+J'ai mis en place un exemple avec la table people "**0001_people.json**" :
 ```
 # start data
-- ./config/sgbd_data/people.json:/mongo-seed/people.json
+- ./config/sgbd_data/0001_people.json:/mongo-seed/0001_people.json
 # end data
 ```
 

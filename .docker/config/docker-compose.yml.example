@@ -41,7 +41,7 @@ services:
             - ./.env:/mongo-seed/.env
             - ./.docker/mongo/import.sh:/mongo-seed/import.sh
             # start data
-            - ./config/sgbd_data/people.json:/mongo-seed/people.json
+            - ./config/sgbd_data/0001_people.json:/mongo-seed/0001_people.json
             # end data
         environment:
             - MONGO_INITDB_DATABASE=${SGBD_DATABASE}

@@ -26,7 +26,7 @@ done < $FICHIER_ENV_EXA
 mkdir -p "$FILE_CONFIG"
 mkdir -p "$FILE_DATA"
 
-cp "$FILE_DATA_DOCKER/people.json" "$FILE_DATA/people.json"
+cp "$FILE_DATA_DOCKER/0001_people.json" "$FILE_DATA/0001_people.json"
 
 cp "$FILE_CONFIG_DOCKER/config_email.json" "$FILE_CONFIG/config_email.json"
 cp "$FILE_CONFIG_DOCKER/connection_mongo.json" "$FILE_CONFIG/connection_mongo.json"
