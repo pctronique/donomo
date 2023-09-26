@@ -91,7 +91,7 @@ Ce conteneur va vous permettre de visualiser les emails transmis par votre proje
 ### Conteneur mongo-express
 Il est conçu à partir de l'image du [docker mongo-express](https://hub.docker.com/r/mailhog/mailhog/).<br />
 Ce conteneur va vous permettre de visualiser votre base de données mongodb (NOSQL).
-<br /><img src="./images/screen64.jpg" alt="exemple nodejs server" width="300" height="175"><br />
+<br /><img src="./images/screen75.jpg" alt="exemple nodejs server" width="300" height="175"><br />
 
 ### Conteneur mongo
 Il est conçu à partir de l'image du [docker mongo](https://hub.docker.com/_/mongo).<br />
@@ -111,7 +111,7 @@ J'ai mis en place un exemple avec la table people "**0001_people.json**" :
 
 <br />
 
-<br /><img src="./images/screen66.jpg" alt="exemple nodejs server" width="300" height="175"><br />
+<br /><img src="./images/screen76.jpg" alt="exemple nodejs server" width="300" height="175"><br />
 
 > [!NOTE]
 > Vous pouvez changer de SGBD pour un SQL. Pour les projet en nodeJS on utilise principalement un SGBD NOSQL.
@@ -241,6 +241,9 @@ $ ./install.sh
 ### Modifier les versions
 > [!WARNING]
 > Il est indispensable de le faire pour pouvoir utiliser un conteneur identique des années plus tard. Surtout pour le conteneur qui contient le code.
+
+> [!NOTE]
+> Les versions importantes sont modifiées à la fin de l'installation, pour éviter les problèmes de version par la suite.
 
 Sur le projet actuel, on utilise les nouvelles versions ce qui peut poser des problèmes sur le projet par la suite. Il est préférable d'utiliser la version utilisée lors de la création du projet.
 <br />[docker nodejs](https://hub.docker.com/_/node/)
