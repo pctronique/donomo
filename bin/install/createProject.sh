@@ -11,40 +11,40 @@ done < ${0%/*}/../../.env
 if ! ${0%/*}/in_install.sh ; then
   exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install cookie-session" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install cookie-session" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install express" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express-session" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install express-session" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install express-socket.io-session" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install express-socket.io-session" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install mongodb" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install mongodb" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install morgan" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install morgan" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install nodemailer" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install nodemailer" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install object-hash" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install object-hash" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install serve-favicon" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install serve-favicon" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install serve-static" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install serve-static" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install socket.io" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install socket.io" ; then
     exit 1
 fi
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install" ; then
     exit 1
 fi
 

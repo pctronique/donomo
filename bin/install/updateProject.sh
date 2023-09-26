@@ -8,7 +8,7 @@ do
    export $line
 done < ${0%/*}/../../.env
 
-if ! docker exec $NAME_PROJECT_CONTAINER bash -c "cd $FOLDER_PROJECT && npm install" ; then
+if ! ${0%/*}/project_bash.sh "cd $FOLDER_PROJECT && npm install" ; then
     exit 1
 fi
 
