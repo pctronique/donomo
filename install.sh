@@ -16,18 +16,21 @@ case "$1" in
 
 esac
 
-if [ ! -e ${0%/*}/.env ]
+if [ ! -f ${0%/*}/.env ]
 then
   if ! ${0%/*}/bin/install/create_env_exp.sh ; then
     exit 1
   fi
 fi
 
-if [ -e ${0%/*}/tmp_install/type_install ]
+if [ -f ${0%/*}/tmp_install/type_install ]
 then
   while read line  
-  do   
-    export $line
+  do
+    if [ ! -z "$line" ]
+    then
+      export $line
+    fi
   done < ${0%/*}/tmp_install/type_install
 else
   TYPE_INSTALL_PROJECT="update"
@@ -51,7 +54,9 @@ rm -f -r "/tmp/error_chmod_docker.log"
 # creation du docker du projet
 if docker compose up -d ; then
 
-  ${0%/*}/bin/install/import_sgbd.sh
+  if ! ${0%/*}/bin/install/import_sgbd.sh ; then
+    exit 1
+  fi
 
   if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
