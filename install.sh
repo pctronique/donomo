@@ -16,11 +16,8 @@ case "$1" in
 
 esac
 
-if [ ! -f ${0%/*}/.env ]
-then
-  if ! ${0%/*}/bin/install/create_env_exp.sh ; then
-    exit 1
-  fi
+if ! bash -c "${0%/*}/bin/install/all_question.sh" ; then
+  exit 1
 fi
 
 if [ -f ${0%/*}/tmp_install/type_install ]
@@ -54,28 +51,30 @@ rm -f -r "/tmp/error_chmod_docker.log"
 # creation du docker du projet
 if docker compose up -d ; then
 
-  if ! ${0%/*}/bin/install/import_sgbd.sh ; then
+  if ! bash -c "${0%/*}/bin/install/import_sgbd.sh" ; then
     exit 1
   fi
 
   if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
-    if ! ${0%/*}/bin/install/createProject.sh ; then
+    if ! bash -c "${0%/*}/bin/install/createProject.sh" ; then
       exit 1
     fi
-    if ! ${0%/*}/bin/version/recup_all_version.sh ; then
+    if ! bash -c "${0%/*}/bin/version/recup_all_version.sh" ; then
       exit 1
     fi
   else
-    if ! ${0%/*}/bin/install/updateProject.sh ; then
+    if ! bash -c "${0%/*}/bin/install/updateProject.sh" ; then
       exit 1
     fi
   fi
 
   ${0%/*}/start.sh
 
-  rm -f -r "${0%/*}/tmp_install"
+  if ! bash -c "${0%/*}/bin/install/display_web.sh" ; then
+    exit 1
+  fi
 
-  ${0%/*}/bin/install/display_web.sh
+  rm -f -r "${0%/*}/tmp_install"
 
 fi
