@@ -1,22 +1,30 @@
 #!/bin/bash
-case "$1" in
-  --del-port)
-    rm -f -r "${0%/*}/.env"
-    ;;
-   
-  --help)
-    echo "$ .install.sh"
-    echo "Ou"
-    echo "$ .install.sh [option]"
-    echo "Options:"
-    echo "   --del-port : Pour modifier le numéros des ports."
-    echo "   --helps    : Pour afficher l'aide."
-    exit 0
-    ;;
+TYPE_SYS="all"
+for arg in "$@"
+do
+  case "$arg" in
+    --del-port)
+      rm -f -r "${0%/*}/.env"
+      ;;
 
-esac
+    --win)
+      TYPE_SYS="win"
+      ;;
+    
+    --help)
+      echo "$ .install.sh"
+      echo "Ou"
+      echo "$ .install.sh [option]"
+      echo "Options:"
+      echo "   --del-port : Pour modifier le numéros des ports."
+      echo "   --helps    : Pour afficher l'aide."
+      exit 0
+      ;;
 
-if ! bash -c "${0%/*}/bin/install/all_question.sh" ; then
+  esac
+done
+
+if ! ${0%/*}/bin/install/all_question.sh ; then
   exit 1
 fi
 
@@ -51,30 +59,43 @@ rm -f -r "/tmp/error_chmod_docker.log"
 # creation du docker du projet
 if docker compose up -d ; then
 
-  if ! bash -c "${0%/*}/bin/install/import_sgbd.sh" ; then
+  if ! ${0%/*}/bin/install/import_sgbd.sh ; then
     exit 1
   fi
 
   if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
-    if ! bash -c "${0%/*}/bin/install/createProject.sh" ; then
+    if ! ${0%/*}/bin/install/createProject.sh ; then
       exit 1
     fi
-    if ! bash -c "${0%/*}/bin/version/recup_all_version.sh" ; then
+    if ! ${0%/*}/bin/version/recup_all_version.sh ; then
       exit 1
     fi
   else
-    if ! bash -c "${0%/*}/bin/install/updateProject.sh" ; then
+    if ! ${0%/*}/bin/install/updateProject.sh ; then
       exit 1
     fi
   fi
 
-  ${0%/*}/start.sh
+  if [ "$TYPE_SYS" = "all" ] 
+  then
 
-  if ! bash -c "${0%/*}/bin/install/display_web.sh" ; then
-    exit 1
+    if ! ${0%/*}/bin/install/remove_container.sh ; then
+      exit 1
+    fi
+
+  else
+
+    if ! ${0%/*}/start.sh ; then
+      exit 1
+    fi
+
+    if ! ${0%/*}/bin/install/display_web.sh ; then
+      exit 1
+    fi
+
+    rm -f -r "${0%/*}/tmp_install"
+
   fi
-
-  rm -f -r "${0%/*}/tmp_install"
 
 fi

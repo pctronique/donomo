@@ -23,7 +23,9 @@ TEXT_BOLD=$'\e'$INST_TEXT_BOLD
 TEXT_DEF=$'\e'$INST_TEXT_DEF
 TEXT_COLOR_DEF=$'\e'$INST_TEXT_COLOR_DEF
 
-echo -e $TEXT_BOLD$COLOR_DEF_REP$'Pour la création des conteneurs du projet, il faut répondre à quelque question.'
+if ! ${0%/*}/message_before_question.sh ; then
+   exit 1
+fi
 
 read -p $COLOR_DEF_REP$'Voulez-vous afficher les pages web à la fin de l\'installation ? ['$COLOR_QUESTION$'Y/n'$COLOR_DEF_REP$'] ? '$TEXT_COLOR_DEF is_web
 if [ -z "$is_web" ] 
