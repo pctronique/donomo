@@ -47,16 +47,16 @@ then
   cp "$FOLDER_DOCKER_CONF/docker-compose.yml.example" "$FOLDER_BASE/docker-compose.yml"
 fi
 
-COLOR_QUESTION=$'\e[90m'
-COLOR_DEF_REP=$'\e[36m'
-TEXT_BOLD=$'\e[1m'
-TEXT_DEF=$'\e[0m'
-TEXT_COLOR_DEF=$'\e[39m'
+COLOR_QUESTION=$'\e'$INST_COLOR_QUESTION
+COLOR_DEF_REP=$'\e'$INST_COLOR_DEF_REP
+COLOR_ERROR_REP=$'\e'$INST_COLOR_ERROR_REP
+TEXT_BOLD=$'\e'$INST_TEXT_BOLD
+TEXT_DEF=$'\e'$INST_TEXT_DEF
+TEXT_COLOR_DEF=$'\e'$INST_TEXT_COLOR_DEF
 
 RENUMB='^[0-9]+$'
 
 #echo -e $TEXT_BOLD$COLOR_DEF_REP$'Pour la création des conteneurs du projet, il faut répondre à quelque question.'
-
 
 if ! ${0%/*}/create_env_name.sh "$FILE_EXP" ; then
   exit 1
