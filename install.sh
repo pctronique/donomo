@@ -10,6 +10,10 @@ do
     --win)
       TYPE_SYS="win"
       ;;
+
+    --mac)
+      TYPE_SYS="mac"
+      ;;
     
     --help)
       echo "$ .install.sh"
@@ -77,24 +81,29 @@ if docker compose up -d ; then
     fi
   fi
 
-  if [ "$TYPE_SYS" = "all" ] 
+  if ! ${0%/*}/start.sh ; then
+    exit 1
+  fi
+
+  if [ "$TYPE_SYS" = "all" ]
   then
-
-    if ! ${0%/*}/bin/install/remove_container.sh ; then
-      exit 1
-    fi
-
-  else
-
-    if ! ${0%/*}/start.sh ; then
-      exit 1
-    fi
 
     if ! ${0%/*}/bin/install/display_web.sh ; then
       exit 1
     fi
 
-    rm -f -r "${0%/*}/tmp_install"
+    #rm -f -r "${0%/*}/tmp_install"
+
+  else
+
+    if ! ${0%/*}/bin/install/display_web.sh --$TYPE_SYS ; then
+      exit 1
+    fi
+
+    if [ "$TYPE_SYS" = "mac" ]
+    then
+      rm -f -r "${0%/*}/tmp_install"
+    fi
 
   fi
 

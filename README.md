@@ -106,11 +106,6 @@ J'ai mis en place un exemple avec la table people "**0001_people.json**" :
 
 <br />
 
-> [!IMPORTANT]
-> Le conteneur du mongodb ne démarre pas sur Windows, je vais essayer de réparer ce problème. Je travaille surtout sur Linux.
-
-<br />
-
 <br /><img src="./images/screen76.jpg" alt="exemple nodejs server" width="300" height="175"><br />
 
 > [!NOTE]
@@ -143,16 +138,25 @@ Pour la création du conteneur docker du projet.
 
 ### Pour Windows
 Testé sur Windows WSL2 et Ubuntu.
-Vous devrez passer sur le prompt de linux ($) :
+Vous avez une version bat des exécutables que vous pouvez avoir besoin pour windows.
+Exemple pour install sur Linux :
 ```
-> bash
-$ [entrer votre commande Linux]
+$ ./install.sh
 ```
+Exemple pour install sur Windows :
+```
+> .\install.bat
+```
+
 
 ### Entrer le nom du projet
 Pour concevoir le projet avec le nom de "**nameProject**" :
 ```
 $ ./bin/config.sh
+```
+Ou pour Windows :
+```
+> .\bin\config.bat
 ```
 <br /><img src="./images/Screenshot_20230926_091734.png" alt="exemple angular server" width="300" height="70"><br />
 Ceci va créer le fichier "**.env**" avec le nom du projet pour les conteneurs.
@@ -166,6 +170,10 @@ a0669f134d4e   mongo-express:latest     "tini -- /docker-ent…"   6 seconds ago
 f2097a7768ce   donomo_nodjs             "docker-entrypoint.s…"   6 seconds ago   Up 5 seconds   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp             donomo_nodejs
 0889ec760f46   mongo:latest             "docker-entrypoint.s…"   6 seconds ago   Up 6 seconds   0.0.0.0:27020->27017/tcp, :::27020->27017/tcp         donomo_mongo
 e23b99a411c2   mailhog/mailhog:latest   "MailHog"                6 seconds ago   Up 6 seconds   1025/tcp, 0.0.0.0:8020->8025/tcp, :::8020->8025/tcp   donomo_mailhog
+```
+Ou pour Windows :
+```
+> docker container ls
 ```
 Ici, je ne pourrais pas utiliser les ports :::8080, :::3000, :::27020 et :::8020, je devrais utiliser d'autre port. Si mon projet utilise un de ces ports, je devrais incrémenter les ports du projet de mon projet de 1 par exemple, pour 8081, 3001, 27021 et 8021 (si j'ai besoin de ces ports).
 
@@ -193,6 +201,10 @@ Vous pouvez modifier les ports pour les conteneurs avec la commande :
 ```
 $ ./bin/config.sh
 ```
+Ou pour Windows :
+```
+> .\bin\config.bat
+```
 
 > [!NOTE]
 > Si vous n'avez pas entré le nom du projet, il vous sera demandé, sinon il demande seulement les numéros des ports.
@@ -211,6 +223,10 @@ Si je dois incrémenter de 9 un des ports (je conserve la valeur d'incrémentati
 ```
 $ ./bin/config.sh
 ```
+Ou pour Windows :
+```
+> .\bin\config.bat
+```
 
 <br /><img src="./images/Screenshot_20230926_091837.png" alt="exemple angular server" width="300" height="70"><br />
 
@@ -225,6 +241,10 @@ VALUE_MAIL_DISPLAY_PORT=8029
 Vous pouvez créer votre conteneur.
 ```
 $ ./install.sh
+```
+Ou pour Windows :
+```
+> .\install.bat
 ```
 
 > [!NOTE]
@@ -253,6 +273,10 @@ $ ./bin/terminal.sh
 # nodejs -v
 v20.6.1
 ```
+Ou pour Windows :
+```
+> .\bin\terminal.bat
+```
 Dans le fichier "**.docker/nodejs/Dockerfile**", remplacé '**latest**' par la bonne version disponible pour docker :
 ```
 FROM node:latest
@@ -265,6 +289,10 @@ Pour pm2 :
 $ ./bin/terminal.sh
 # pm2 --version
 5.3.0
+```
+Ou pour Windows :
+```
+> .\bin\terminal.bat
 ```
 Dans le fichier "**.docker/nodejs/Dockerfile**", remplacé :
 ```
@@ -305,12 +333,20 @@ Si vous avez besoin d'un package pour votre projet dans le conteneur. Vous pouve
 $ ./bin/terminal.sh
 # apt-cache search name_package
 ```
+Ou pour Windows :
+```
+> .\bin\terminal.bat
+```
 
 ## Install un package (Docker)
 Si vous avez besoin d'installer un package dans votre conteneur.
 ```
 $ ./bin/terminal.sh
 # apt install name_package
+```
+Ou pour Windows :
+```
+> .\bin\terminal.bat
 ```
 
 ### Dans Dockerfile
@@ -332,6 +368,10 @@ Options:
    [id ou nom du conteneur]
 $ ./bin/container_logs.sh --nodejs
 ```
+Ou pour Windows :
+```
+> .\bin\container_logs.bat
+```
 Vous pouvez avoir besoin d'information sur l'un des conteneurs, pour trouver sa version par exemple. Pour ce faire :
 ```
 $ ./bin/container_info.sh 
@@ -344,6 +384,10 @@ Options:
    [id ou nom du conteneur]
 $ ./bin/container_info.sh --mailhog
 ```
+Ou pour Windows :
+```
+> .\bin\container_info.bat
+```
 <br />
 
 > [!WARNING]
@@ -353,6 +397,10 @@ $ ./bin/container_info.sh --mailhog
 Pour mettre les informations dans un fichier json :
 ```
 $ ./bin/container_info.sh --mailhog >> mailhog_info.json
+```
+Ou pour Windows :
+```
+> .\bin\container_info.bat --mailhog >> mailhog_info.json
 ```
 
 ## Le dossier du projet
@@ -424,6 +472,10 @@ Options:
 $ ./bin/server.sh start
 $ ./bin/server.sh stop
 $ ./bin/server.sh restart
+```
+Ou pour Windows :
+```
+> .\bin\server.bat
 ```
 
 ## En cas de problème lors d'installation

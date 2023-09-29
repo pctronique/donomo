@@ -3,6 +3,21 @@ if ! ${0%/*}/message_create_container.sh ; then
    exit 1
 fi
 
+TYPE_SYS="all"
+for arg in "$@"
+do
+  case "$arg" in
+    --win)
+      TYPE_SYS="win"
+      ;;
+
+    --mac)
+      TYPE_SYS="mac"
+      ;;
+
+  esac
+done
+
 FOLDER_BASE="${0%/*}/../.."
 FOLDER_DOCKER="$FOLDER_BASE/.docker"
 FOLDER_DOCKER_CONF="$FOLDER_DOCKER/config"
@@ -78,11 +93,38 @@ TEXT_BOLD=$'\e'$INST_TEXT_BOLD
 TEXT_DEF=$'\e'$INST_TEXT_DEF
 TEXT_COLOR_DEF=$'\e'$INST_TEXT_COLOR_DEF
 
+echo "" >> "$FOLDER_ENV_TMP/web_lien"
+
+rm -r -f "$FOLDER_ENV_TMP/web_lien"
+
 if [ "$IS_DISPLAY_WEB" = "TRUE" ]
 then
-   sensible-browser "http://localhost$NUM_PORT_SGBD_DISPLAY" 2> /dev/null &
-   sensible-browser "http://localhost$NUM_PORT_PROJECT" 2> /dev/null &
-   sensible-browser "http://localhost$NUM_PORT_MAIL_DISPLAY" 2> /dev/null  &
+   echo "http://localhost$NUM_PORT_SGBD_DISPLAY" >> "$FOLDER_ENV_TMP/web_lien"
+   echo "http://localhost$NUM_PORT_PROJECT" >> "$FOLDER_ENV_TMP/web_lien"
+   echo "http://localhost$NUM_PORT_MAIL_DISPLAY" >> "$FOLDER_ENV_TMP/web_lien"
+   #sensible-browser "http://localhost$NUM_PORT_SGBD_DISPLAY" 2> /dev/null &
+   #sensible-browser "http://localhost$NUM_PORT_PROJECT" 2> /dev/null &
+   #sensible-browser "http://localhost$NUM_PORT_MAIL_DISPLAY" 2> /dev/null  &
+fi
+
+if [ ! "$TYPE_SYS" = "win" ]
+then
+   if [ -f "$FOLDER_ENV_TMP/web_lien" ]
+   then
+   while read line  
+   do
+      if [ ! -z "$line" ]
+      then
+         #sensible-browser "$line" 2> /dev/null &
+         if [ ! "$TYPE_SYS" = "mac" ]
+         then
+            xdg-open "$line"
+         else
+            open "$line"
+         fi
+      fi
+   done < "$FOLDER_ENV_TMP/web_lien"
+   fi
 fi
 
 echo -e "$TEXT_BOLD$COLOR_DEF_REP Pour visualiser le projet         :$TEXT_COLOR_DEF http://localhost$NUM_PORT_PROJECT $TEXT_DEF"
