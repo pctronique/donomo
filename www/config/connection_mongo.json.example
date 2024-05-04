@@ -1,0 +1,8 @@
+{
+    "type"   : "mongodb",
+    "host" : "mongo",
+    "port"   : 27017,
+    "name"   : "donomo",
+    "user"   : "",
+    "pass"   : ""
+}

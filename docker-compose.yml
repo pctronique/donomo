@@ -1,0 +1,75 @@
+
+services:
+###########################
+# Setup the nodejs container
+###########################
+    nodejs:
+        container_name: ${NAME_PROJECT}_nodejs
+        restart: always
+        tty: true
+        stdin_open: true
+        build: 
+            context: .docker/nodejs
+            args:
+                - VALUE_NODEJS_VERSION=${VALUE_NODEJS_VERSION}
+        depends_on:
+            - mongo
+        volumes:
+            - ./config/connection_server.json:/home/project/www/${FOLDER_CONFIG}/connection_server.json:rw
+            - ./config/connection_mongo.json:/home/project/www/${FOLDER_CONFIG}/connection_mongo.json:rw
+            - ./config/config_email.json:/home/project/www/${FOLDER_CONFIG}/config_email.json:rw
+            - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
+            - ./.docker/nodejs/updateProject.sh:/home/updateProject.sh:rw
+            - ./.env:/home/.env:rw
+            - ./project:/home/project:rw
+            - ./.dockertmp/logs/pm2:/root/.pm2/logs/:rw
+            - ./.dockertmp/tmp/nodejs:/var/tmp/nodejs:rw
+            - ./.dockertmp/logs/nodejs:/var/log/nodejs/:rw
+        ports:
+            - ${VALUE_NODEJS_PORT}:3000
+
+###########################
+# Setup the mongo container
+###########################
+    mongo:
+        image: mongo:${VALUE_SGBD_VERSION}
+        container_name: ${NAME_PROJECT}_mongo
+        restart: always
+        volumes:
+            - ./.dockertmp/mongo_data:/data/db
+            - ./.dockertmp/mongo-seed/:/mongo-seed/
+            - ./.env:/mongo-seed/.env
+            - ./.docker/mongo/import.sh:/mongo-seed/import.sh
+            # start data
+            - ./config/0001_people.json:/mongo-seed/0001_people.json
+            # end data
+        environment:
+            - MONGO_INITDB_DATABASE=project
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=secret
+        
+###########################
+# Setup the mongo-express container
+###########################
+    mongo-express:
+        image: mongo-express:${VALUE_MONGOEXP_VERSION}
+        container_name: ${NAME_PROJECT}_moexpress
+        restart: always
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
+            - ME_CONFIG_MONGODB_URL=mongodb://root:secret@mongo:27017
+        links:
+            - mongo
+        ports:
+            - ${VALUE_MONGOEXP_PORT}:8081
+        
+###########################
+# Setup the mailhog container
+###########################
+    mailhog:
+        image: mailhog/mailhog:${VALUE_MAILHOG_VERSION}
+        container_name: ${NAME_PROJECT}_mailhog
+        restart: always
+        ports:
+            - ${VALUE_MAILHOG_PORT}:8025
