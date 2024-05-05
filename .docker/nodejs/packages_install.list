@@ -1,0 +1,12 @@
+cookie-session
+express
+express-session
+express-socket.io-session
+mongodb
+morgan
+nodemailer
+object-hash
+serve-favicon
+serve-static
+socket.io
+

@@ -13,7 +13,7 @@ do
     fi
 done < ${0%/*}/.env
 
-#rm -f -r "/tmp/install_sgbd.txt"
+rm -f -r "/tmp/install_sgbd.txt"
 
 TAB_INSTALL=()
 
@@ -28,7 +28,7 @@ then
     done < "${0%/*}/table_install.txt"
 fi
 
-for entry in `ls ${0%/*}/*.json 2> "/var/log/defmongo/install_sgbd.log"`; do
+for entry in `ls ${0%/*}/*.json 2> "/tmp/install_sgbd.txt"`; do
 
     IS_RECUP="true"
 
@@ -79,6 +79,4 @@ for entry in `ls ${0%/*}/*.json 2> "/var/log/defmongo/install_sgbd.log"`; do
     fi
 done
 
-#rm -f -r "/tmp/install_sgbd.txt"
-
-exit 0
+rm -f -r "/tmp/install_sgbd.txt"

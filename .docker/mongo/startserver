@@ -8,16 +8,16 @@
 # Short-Description: start nodejs server
 ### END INIT INFO
 
-DAEMON="/home/updateProject.sh" #ligne de commande du programme, attention à l'extension .py.
+DAEMON="/var/mongo/import_sgbd.sh" #ligne de commande du programme, attention à l'extension .py.
 DAEMONUSER="root" #utilisateur du programme
 DAEMONNAME="startserver" #Nom du programme (doit être identique à l'exécutable).
 
 d_start () {
-    /home/updateProject.sh start
+    /var/mongo/import_sgbd.sh
 }
  
 d_stop () {
-    /home/updateProject.sh stop
+    /var/mongo/import_sgbd.sh
 }
  
 d_restart () {
@@ -25,12 +25,8 @@ d_restart () {
     d_start
 }
  
-d_list () {
-    /home/updateProject.sh list
-}
- 
 case "$1" in
-    start|stop|list)
+    start|stop)
         d_${1}
         ;;
  

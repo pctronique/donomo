@@ -12,19 +12,22 @@ services:
             context: .docker/nodejs
             args:
                 - VALUE_NODEJS_VERSION=${VALUE_NODEJS_VERSION}
+                - NAME_PROJECT=${NAME_PROJECT}
+                - NAME_JS_SERVER=${NAME_JS_SERVER}
         depends_on:
             - mongo
         volumes:
+            - ./www/:/home/project/www
             - ./config/connection_server.json:/home/project/www/${FOLDER_CONFIG}/connection_server.json:rw
             - ./config/connection_mongo.json:/home/project/www/${FOLDER_CONFIG}/connection_mongo.json:rw
             - ./config/config_email.json:/home/project/www/${FOLDER_CONFIG}/config_email.json:rw
             - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
             - ./.docker/nodejs/updateProject.sh:/home/updateProject.sh:rw
             - ./.env:/home/.env:rw
-            - ./project:/home/project:rw
             - ./.dockertmp/logs/pm2:/root/.pm2/logs/:rw
             - ./.dockertmp/tmp/nodejs:/var/tmp/nodejs:rw
             - ./.dockertmp/logs/nodejs:/var/log/nodejs/:rw
+        command: bash -c "/tmp/project/createProject.sh"
         ports:
             - ${VALUE_NODEJS_PORT}:3000
 
@@ -36,6 +39,7 @@ services:
         container_name: ${NAME_PROJECT}_mongo
         restart: always
         volumes:
+            - ./.dockertmp/logs/default:/var/log/default
             - ./.dockertmp/mongo_data:/data/db
             - ./.dockertmp/mongo-seed/:/mongo-seed/
             - ./.env:/mongo-seed/.env
@@ -44,9 +48,10 @@ services:
             - ./config/0001_people.json:/mongo-seed/0001_people.json
             # end data
         environment:
-            - MONGO_INITDB_DATABASE=project
-            - MONGO_INITDB_ROOT_USERNAME=root
-            - MONGO_INITDB_ROOT_PASSWORD=secret
+            - MONGO_INITDB_DATABASE=${SGBD_DATABASE}
+            - MONGO_INITDB_ROOT_USERNAME=${SGBD_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${SGBD_ROOT_PASSWORD}
+        #command: bash -c "/mongo-seed/import.sh 2> /var/log/default/import.log"
         
 ###########################
 # Setup the mongo-express container
@@ -56,11 +61,15 @@ services:
         container_name: ${NAME_PROJECT}_moexpress
         restart: always
         environment:
-            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-            - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
-            - ME_CONFIG_MONGODB_URL=mongodb://root:secret@mongo:27017
-        links:
-            - mongo
+            - ME_CONFIG_MONGODB_SERVER=${NAME_PROJECT}_mongo
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=${SGBD_ROOT_USERNAME}
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=${SGBD_ROOT_PASSWORD}
+            - ME_CONFIG_BASICAUTH_USERNAME=${SGBD_ROOT_USERNAME}
+            - ME_CONFIG_BASICAUTH_PASSWORD=${SGBD_ROOT_PASSWORD}
+            - ME_CONFIG_BASICAUTH=false
+            - ME_CONFIG_MONGODB_URL=mongodb://${SGBD_ROOT_USERNAME}:${SGBD_ROOT_PASSWORD}@${NAME_PROJECT}_mongo:27017/?authSource=${SGBD_ROOT_USERNAME}
+        depends_on:
+        - mongo
         ports:
             - ${VALUE_MONGOEXP_PORT}:8081
         
