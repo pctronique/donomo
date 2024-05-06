@@ -7,5 +7,5 @@ FROM mongo:${DEF_SGBD_VERSION}
 
 COPY import_sgbd.sh /var/sgbd/mongo/
 
-RUN chmod 777 /var/sgbd/mongo/import_sgbd.sh
+RUN chmod +x /var/sgbd/mongo/import_sgbd.sh
 RUN /var/sgbd/mongo/import_sgbd.sh &

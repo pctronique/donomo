@@ -7,7 +7,9 @@ do
     then
         if [ ! -z "$line" ]
         then
-            valuesenv+=("$line")
+            value=${line#*=}
+            name=${line%=*}
+            export $name="$value"
         fi
     fi
 done < ${0%/*}/.env

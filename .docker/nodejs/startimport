@@ -8,16 +8,16 @@
 # Short-Description: start nodejs server
 ### END INIT INFO
 
-DAEMON="/home/updateProject.sh" #ligne de commande du programme, attention à l'extension .py.
+DAEMON="/var/docker/nodejs/updateProject.sh" #ligne de commande du programme, attention à l'extension .py.
 DAEMONUSER="root" #utilisateur du programme
 DAEMONNAME="startserver" #Nom du programme (doit être identique à l'exécutable).
 
 d_start () {
-    /home/updateProject.sh start
+    /var/docker/nodejs/updateProject.sh start
 }
  
 d_stop () {
-    /home/updateProject.sh stop
+    /var/docker/nodejs/updateProject.sh stop
 }
  
 d_restart () {
@@ -26,7 +26,7 @@ d_restart () {
 }
  
 d_list () {
-    /home/updateProject.sh list
+    /var/docker/nodejs/updateProject.sh list
 }
  
 case "$1" in

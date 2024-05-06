@@ -22,12 +22,12 @@ services:
             - ./config/connection_mongo.json:/home/project/www/${FOLDER_CONFIG}/connection_mongo.json:rw
             - ./config/config_email.json:/home/project/www/${FOLDER_CONFIG}/config_email.json:rw
             - ./.docker/nodejs/startserver:/etc/init.d/startserver:rw
-            - ./.docker/nodejs/updateProject.sh:/home/updateProject.sh:rw
-            - ./.env:/home/.env:rw
+            - ./.docker/nodejs/updateProject.sh:/var/docker/nodejs/updateProject.sh:rw
+            - ./.env:/var/docker/nodejs/.env:rw
             - ./.dockertmp/logs/pm2:/root/.pm2/logs/:rw
             - ./.dockertmp/tmp/nodejs:/var/tmp/nodejs:rw
             - ./.dockertmp/logs/nodejs:/var/log/nodejs/:rw
-        command: bash -c "/tmp/project/createProject.sh"
+        command: bash -c "/var/docker/nodejs/createProject.sh"
         ports:
             - ${VALUE_NODEJS_PORT}:3000
 

@@ -14,18 +14,14 @@ ENV DEF_NAME_JS_SERVER=${NAME_JS_SERVER}
 RUN apt-get update &&\ 
     apt-get install -y --no-install-recommends apt-utils
 
-VOLUME "/tmp/project"
-WORKDIR "/tmp/project"
+VOLUME "/var/docker/nodejs"
 
-COPY modifname.sh /tmp/project/
-COPY createProject.sh /tmp/project/
-COPY packages_install.list /tmp/project/
-COPY package.json /tmp/project/
+COPY modifname.sh /var/docker/nodejs/
+COPY createProject.sh /var/docker/nodejs/
+COPY packages_install.list /var/docker/nodejs/
+COPY package.json /var/docker/nodejs/
 
-RUN /tmp/project/modifname.sh "${DEF_NAME_PROJECT}" "${DEF_NAME_JS_SERVER}"
-
-VOLUME "/home/project"
-WORKDIR "/home/project"
+RUN /var/docker/nodejs/modifname.sh "${DEF_NAME_PROJECT}" "${DEF_NAME_JS_SERVER}"
 
 COPY startserver /etc/init.d/
 

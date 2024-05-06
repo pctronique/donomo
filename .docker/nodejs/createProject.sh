@@ -1,11 +1,11 @@
 #!/bin/bash
 if ! /home/project/www/package.json ; then
 
-  cp /tmp/project/package.json /home/project/www/package.json
+  cp /var/docker/nodejs/package.json /home/project/www/package.json
 
   cd /home/project/www/
 
-  if [ -e /tmp/project/packages_install.list ]
+  if [ -e /var/docker/nodejs/packages_install.list ]
   then
     while read line  
     do   
@@ -13,7 +13,7 @@ if ! /home/project/www/package.json ; then
       then
         npm install $line
       fi
-    done < /tmp/project/packages_install.list
+    done < /var/docker/nodejs/packages_install.list
   fi
 fi
 
