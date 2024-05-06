@@ -7,38 +7,26 @@ fi
 
 while read line  
 do   
-    if [ ! -z "$line" ]
+    line="$line" | xargs
+    if [[ ! $line =~ ^# ]];
     then
-        export $line
+        if [ ! -z "$line" ]
+        then
+            valuesenv+=("$line")
+        fi
     fi
 done < ${0%/*}/.env
 
-#rm -f -r "/tmp/install_sgbd.txt"
-
-TAB_INSTALL=()
-
-if [ -e "${0%/*}/table_install.txt" ]
+if [ -f "${0%/*}/table_install.txt" ]
 then
-    while read line  
-    do   
-        if [ ! -z "$line" ]
-        then
-            TAB_INSTALL+=("$line")
-        fi
-    done < "${0%/*}/table_install.txt"
+    exit 0
 fi
 
-for entry in `ls ${0%/*}/*.json 2> "/var/log/defmongo/install_sgbd.log"`; do
+echo "" >> "${0%/*}/table_install.txt"
+
+for entry in `ls ${0%/*}/*.json`; do
 
     IS_RECUP="true"
-
-    for value in "${TAB_INSTALL[@]}"
-    do
-        if [ "$value" = "$entry" ]
-        then
-            IS_RECUP="false"
-        fi
-    done
 
     if [ "$IS_RECUP" = "true" ]
     then
@@ -78,7 +66,5 @@ for entry in `ls ${0%/*}/*.json 2> "/var/log/defmongo/install_sgbd.log"`; do
 
     fi
 done
-
-#rm -f -r "/tmp/install_sgbd.txt"
 
 exit 0

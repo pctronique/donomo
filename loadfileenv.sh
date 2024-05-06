@@ -1,5 +1,13 @@
 #!/bin/bash
 
+valuesenv=()
+
+if [ -z "$1" ]
+then
+    echo "${valuesenv[@]}"
+    exit 0;
+fi
+
 while read line  
 do   
     line="$line" | xargs
@@ -10,7 +18,8 @@ do
             valuesenv+=("$line")
         fi
     fi
-done < ${0%/*}/.env
+done < $1
 
-cd /home/project/www
-pm2 $@ $NAME_JS_SERVER --watch --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z"
+echo "${valuesenv[@]}"
+
+exit 0

@@ -35,4 +35,7 @@ RUN update-rc.d startserver defaults
 RUN npm install -y --no-install-recommends pm2 -g
 RUN pm2 install pm2-logrotate
 
+VOLUME "/home/project/www"
+WORKDIR "/home/project/www"
+
 CMD service startserver start && tail -F /var/log/nodejs/error.log

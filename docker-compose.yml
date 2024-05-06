@@ -35,23 +35,25 @@ services:
 # Setup the mongo container
 ###########################
     mongo:
-        image: mongo:${VALUE_SGBD_VERSION}
         container_name: ${NAME_PROJECT}_mongo
+        build: 
+            context: .docker/mongo
+            args:
+                - VALUE_SGBD_VERSION=${VALUE_SGBD_VERSION}
         restart: always
         volumes:
-            - ./.dockertmp/logs/default:/var/log/default
+            - ./.dockertmp/logs/defmongo:/var/log/defmongo
             - ./.dockertmp/mongo_data:/data/db
             - ./.dockertmp/mongo-seed/:/mongo-seed/
             - ./.env:/mongo-seed/.env
-            - ./.docker/mongo/import.sh:/mongo-seed/import.sh
             # start data
             - ./config/0001_people.json:/mongo-seed/0001_people.json
             # end data
+            - ./.docker/mongo/import.sh:/mongo-seed/import.sh
         environment:
             - MONGO_INITDB_DATABASE=${SGBD_DATABASE}
             - MONGO_INITDB_ROOT_USERNAME=${SGBD_ROOT_USERNAME}
             - MONGO_INITDB_ROOT_PASSWORD=${SGBD_ROOT_PASSWORD}
-        #command: bash -c "/mongo-seed/import.sh 2> /var/log/default/import.log"
         
 ###########################
 # Setup the mongo-express container
