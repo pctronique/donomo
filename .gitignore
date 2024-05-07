@@ -1,0 +1,11 @@
+/.env
+/projecttmp
+/tmp_install
+/install_tmp
+/.dockertmp/
+/www/node_modules/
+/www/config/connection_server.json
+/www/config/connection_mongo.json
+/www/config/config_email.json
+/www/package-lock.json
+/www/package.json
