@@ -1,11 +1,17 @@
 # variable environnement
-ARG VALUE_SGBD_VERSION
-ARG DEF_SGBD_VERSION=${VALUE_SGBD_VERSION}
+ARG VALUE_MONGO_VERSION
+ARG DEF_MONGO_VERSION=${VALUE_MONGO_VERSION}
 
 # config install nodejs
-FROM mongo:${DEF_SGBD_VERSION}
+FROM mongo:${DEF_MONGO_VERSION}
 
-COPY import_sgbd.sh /var/sgbd/mongo/
+RUN mkdir -p /var/docker/mongo
+RUN mkdir -p /var/log/docker/mongo
 
-RUN chmod +x /var/sgbd/mongo/import_sgbd.sh
-RUN /var/sgbd/mongo/import_sgbd.sh &
+COPY init/import.sh /var/docker/mongo/
+RUN chmod +x /var/docker/mongo/import.sh
+
+COPY init/docker-datasgbd-entrypoint.sh /var/docker/mongo/
+RUN chmod +x /var/docker/mongo/docker-datasgbd-entrypoint.sh
+
+#ENTRYPOINT ["/var/docker/mongo/docker-datasgbd-entrypoint.sh"]

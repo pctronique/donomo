@@ -14,6 +14,8 @@ let uri =
 
 let dbName = connection_db.base;
 
+console.log(uri);
+
 (async function () {
   // Connect to the Atlas cluster
   let client = await MongoClient.connect(uri, {});

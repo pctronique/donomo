@@ -1,8 +1,8 @@
 {
     "type"   : "mongodb",
-    "host"   : "mongo",
+    "host"   : "${NAME_PROJECT}_mongo",
     "port"   : 27017,
-    "name"   : "project",
-    "user"   : "root",
-    "pass"   : "secret"
+    "name"   : "${SGBD_DATABASE}",
+    "user"   : "${SGBD_USER}",
+    "pass"   : "${SGBD_PASSWORD}"
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
-if ! /home/project/www/package.json ; then
-
+if [ ! -e /home/project/www/package.json ]
+then
   cp /var/docker/nodejs/package.json /home/project/www/package.json
 
   cd /home/project/www/
@@ -19,6 +19,6 @@ fi
 
 RUN npm install
 
-service startserver start && tail -F /var/log/nodejs/error.log
+service startserver start && tail -F /var/docker/nodejs/error.log
 
 exit 0

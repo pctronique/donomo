@@ -4,4 +4,4 @@ do
   sleep 0.2
 done
 
-/mongo-seed/import.sh 2&> "/var/log/defmongo/error.log"
+/mongo-seed/import.sh 2&> "/var/log/docker/mongo/error.log"

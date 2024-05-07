@@ -1,10 +1,4 @@
 #! /bin/bash
-if [ ! -e ${0%/*}/.env ]
-then
-   echo "Merci de créer les conteneurs du projet avant d'utiliser cette commande."
-   exit 1
-fi
-
 while read line  
 do   
     line="$line" | xargs
@@ -17,16 +11,16 @@ do
             export $name="$value"
         fi
     fi
-done < ${0%/*}/.env
+done < /var/docker/mongo/.env
 
-if [ -f "${0%/*}/table_install.txt" ]
+if [ -f "/data/db/table_install.txt" ]
 then
     exit 0
 fi
 
-echo "" >> "${0%/*}/table_install.txt"
+echo "import_sgbd:true" >> "/data/db/table_install.txt"
 
-for entry in `ls ${0%/*}/*.json`; do
+for entry in `ls /docker-entrypoint-initdb.d/*.json`; do
 
     IS_RECUP="true"
 
@@ -63,8 +57,8 @@ for entry in `ls ${0%/*}/*.json`; do
             fi
         fi
 
-        mongoimport -u=$SGBD_ROOT_USERNAME -p=$SGBD_ROOT_PASSWORD -h=mongo --authenticationDatabase=admin --db $SGBD_DATABASE --collection $nameTabSGBD --type json --file /mongo-seed/$entry --jsonArray
-        echo "$entry" >> "${0%/*}/table_install.txt"
+        mongoimport -u=$SGBD_USER -p=$SGBD_PASSWORD -h=mongo --authenticationDatabase=admin --db $SGBD_DATABASE --collection $nameTabSGBD --type json --file $entry --jsonArray
+        echo "$entry" >> "/data/db/table_install.txt"
 
     fi
 done
