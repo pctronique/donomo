@@ -9,24 +9,25 @@ services:
         tty: true
         stdin_open: true
         build: 
-            context: .docker/nodejs
+            context: .docker/images/nodejs
             args:
                 - VALUE_NODEJS_VERSION=${VALUE_NODEJS_VERSION}
-                - NAME_PROJECT=${NAME_PROJECT}
-                - NAME_JS_SERVER=${NAME_JS_SERVER}
+                - VALUE_PM2_VERSION=${VALUE_PM2_VERSION}
         volumes:
             - ./www/:/home/project/www
-            - ./config/data:/var/docker/nodejs/data
+            - ./config/data:/docker-entrypoint-initdata.d:rw
             - ./.env:/home/project/www/${FOLDER_CONFIG}/.env:rw
             - ./config/connection_server.json:/home/project/www/${FOLDER_CONFIG}/connection_server.json:rw
             - ./config/connection_mongo.json:/home/project/www/${FOLDER_CONFIG}/connection_mongo.json:rw
             - ./config/config_email.json:/home/project/www/${FOLDER_CONFIG}/config_email.json:rw
-            - ./.env:/var/docker/nodejs/.env:rw
             - ./.dockertmp/logs/pm2:/root/.pm2/logs/:rw
-            - ./.dockertmp/tmp/nodejs:/var/tmp/nodejs:rw
+            - ./.dockertmp/tmp/nodejs:/var/tmp/docker/nodejs/:rw
             - ./.dockertmp/logs/nodejs:/var/log/docker/nodejs/:rw
         environment:
             - TZ=${VALUE_TIMEZONES}
+            - NODE_FOLDER_DATA=${FOLDER_DATA}
+            - NODE_NAME_PROJECT=${NAME_PROJECT}
+            - NODE_NAME_JS_SERVER=server.js
         ports:
             - ${VALUE_NODEJS_PORT}:3000
 
@@ -34,19 +35,19 @@ services:
 # Setup the mongo container
 ###########################
     mongo:
-        #image: mongo:${VALUE_MONGO_VERSION}
         container_name: ${NAME_PROJECT}_mongo
         build: 
-            context: .docker/mongo
+            context: .docker/images/mongo
             args:
                 - VALUE_MONGO_VERSION=${VALUE_MONGO_VERSION}
         restart: always
         volumes:
-            - ./.env:/var/docker/mongo/.env
+            - ./.dockertmp/logs/mongo:/var/log/docker/mongo/:rw
             - ./.dockertmp/mongo_data:/data/db
             - ./config/sgbd_data:/docker-entrypoint-initdb.d/:rw
         environment:
             - TZ=${VALUE_TIMEZONES}
+            - MONGO_INITDB_HOST=${NAME_PROJECT}_mongo
             - MONGO_INITDB_DATABASE=${SGBD_DATABASE}
             - MONGO_INITDB_ROOT_USERNAME=${SGBD_USER}
             - MONGO_INITDB_ROOT_PASSWORD=${SGBD_PASSWORD}
@@ -65,7 +66,7 @@ services:
             - ME_CONFIG_BASICAUTH_USERNAME=${SGBD_USER}
             - ME_CONFIG_BASICAUTH_PASSWORD=${SGBD_PASSWORD}
             - ME_CONFIG_BASICAUTH=false
-            - ME_CONFIG_MONGODB_URL=mongodb://${SGBD_USER}:${SGBD_PASSWORD}@${NAME_PROJECT}_mongo:27017/?authSource=${SGBD_USER}
+            - ME_CONFIG_MONGODB_URL=mongodb://${SGBD_USER}:${SGBD_PASSWORD}@${NAME_PROJECT}_mongo:27017/?authSource=admin
         depends_on:
             - mongo
         ports:
