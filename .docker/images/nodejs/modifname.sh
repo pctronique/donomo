@@ -30,12 +30,6 @@ then
     NODE_NAME_JS_SERVER=server.js
 fi
 
-echo "NODE_FOLDER_PROJECT : ${NODE_FOLDER_PROJECT}" >> ${NODE_FOLDER_LOG}installdatasgbd.log
-echo "NODE_NAME_PROJECT : ${NODE_NAME_PROJECT}" >> ${NODE_FOLDER_LOG}installdatasgbd.log
-echo "NODE_NAME_SERVER : ${NODE_NAME_SERVER}" >> ${NODE_FOLDER_LOG}installdatasgbd.log
-echo "NODE_NAME_JS_SERVER : ${NODE_NAME_JS_SERVER}" >> ${NODE_FOLDER_LOG}installdatasgbd.log
-echo "NODE_FOLDER_INIT : ${NODE_FOLDER_INIT}" >> ${NODE_FOLDER_LOG}installdatasgbd.log
-
 FILE_PACKAGE="${NODE_FOLDER_INIT}package.json"
 FILE_CONFIG="${NODE_FOLDER_INIT}ecosystem.config.js"
 
@@ -43,6 +37,14 @@ sed -i "s/name_project/${NODE_NAME_PROJECT}/" $FILE_PACKAGE
 sed -i "s/file_server/${NODE_NAME_JS_SERVER}/" $FILE_PACKAGE
 sed -i "s/name_project/${NODE_NAME_SERVER}/" $FILE_CONFIG
 sed -i "s/file_server/${NODE_NAME_JS_SERVER}/" $FILE_CONFIG
+
+if [ ! -e ${NODE_FOLDER_PROJECT}package.json ]
+then
+    if [ -e ${NODE_FOLDER_PROJECT}package.json.example ]
+    then
+        cp ${NODE_FOLDER_PROJECT}package.json.example ${NODE_FOLDER_PROJECT}package.json
+    fi
+fi
 
 if [ -e ${NODE_FOLDER_PROJECT}package.json ]
 then

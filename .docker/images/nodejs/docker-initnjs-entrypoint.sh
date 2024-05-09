@@ -14,6 +14,8 @@ crontab /etc/cron.d/dockercron
 touch ${NODE_FOLDER_LOG}cron.log
 cron && tail -f ${NODE_FOLDER_LOG}cron.log &
 
+${NODE_FOLDER_INIT}modifname.sh
+
 /var/docker/nodejs/createProject.sh 2>> ${NODE_FOLDER_LOG}initnodejs.log
 
 exec "$@"

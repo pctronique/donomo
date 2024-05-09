@@ -48,8 +48,6 @@ RUN chmod +x ${NODE_FOLDER_INIT}updateProject.sh
 COPY docker-initnjs-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-initnjs-entrypoint.sh
 
-RUN ${NODE_FOLDER_INIT}modifname.sh
-
 COPY startserver /etc/init.d/
 
 RUN chmod +x /etc/init.d/startserver
