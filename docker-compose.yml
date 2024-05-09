@@ -16,7 +16,6 @@ services:
         volumes:
             - ./www/:/home/project/www
             - ./config/data:/docker-entrypoint-initdata.d:rw
-            - ./config/dockercron:/etc/cron.d/dockercron:rw
             - ./.env:/home/project/www/${FOLDER_CONFIG}/.env:rw
             - ./config/connection_server.json:/home/project/www/${FOLDER_CONFIG}/connection_server.json:rw
             - ./config/connection_mongo.json:/home/project/www/${FOLDER_CONFIG}/connection_mongo.json:rw
