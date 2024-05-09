@@ -18,14 +18,16 @@ ENV PM2_VERSION=${PM2_VERSION:-'pm2'}
 
 RUN apt-get update &&\ 
     apt-get install -y --no-install-recommends apt-utils
-
-RUN groupadd docker
+RUN apt install -y cron
 
 RUN mkdir -p ${NODE_FOLDER_INIT}
 RUN mkdir -p ${NODE_FOLDER_PROJECT}
 RUN mkdir -p ${NODE_FOLDER_LOG}
 RUN mkdir -p ${NODE_FOLDER_INIT_DATA}
 RUN mkdir -p ${NODE_FOLDER_TMP}
+
+COPY dockercron /etc/cron.d/dockercron
+RUN crontab /etc/cron.d/dockercron
 
 COPY modifname.sh ${NODE_FOLDER_INIT}
 RUN chmod +x ${NODE_FOLDER_INIT}modifname.sh
@@ -56,7 +58,7 @@ RUN update-rc.d startserver defaults
 RUN npm install -y --no-install-recommends ${PM2_VERSION} -g
 #RUN pm2 install pm2-logrotate
 
-RUN bash -c 'echo "" >> ${NODE_FOLDER_PROJECT}error.log'
+RUN touch ${NODE_FOLDER_LOG}error.log
 
 ENTRYPOINT ["docker-entrypoint.sh", "docker-initnjs-entrypoint.sh"]
 

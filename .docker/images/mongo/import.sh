@@ -40,7 +40,12 @@ then
     exit 0
 fi
 
-#mongodump -u=${MONGO_INITDB_ROOT_USERNAME} -p=${MONGO_INITDB_ROOT_PASSWORD}21 -h=mongo --authenticationDatabase=admin 2>> test.log
+msgconn=$(mongodump -u=${MONGO_INITDB_ROOT_USERNAME} -p=${MONGO_INITDB_ROOT_PASSWORD} -h=mongo --authenticationDatabase=admin 2>&1)
+
+while [  $msgconn == *"Failed"* ]; do
+    echo "Failed" >> ${MONGO_FOLDER_LOG}failed.log
+    sleep 0.2
+done
 
 echo "import_sgbd:true" >> "${MONGO_FOLDER_SGBD}table_install.txt"
 

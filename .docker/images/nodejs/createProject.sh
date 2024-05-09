@@ -45,7 +45,7 @@ fi
 
 npm install 2&>> ${NODE_FOLDER_LOG}initnodejs.log
 
-echo "" >> ${NODE_FOLDER_LOG}error.log
+touch ${NODE_FOLDER_LOG}error.log
 
 service startserver start && tail -F ${NODE_FOLDER_LOG}error.log
 

@@ -9,7 +9,7 @@
 /www/config/connection_mongo.json
 /www/config/config_email.json
 /www/package-lock.json
-/www/package.json
+#/www/package.json
 /www/ecosystem.config.js
 /www/ecosystem.config.js.example
 /www/data

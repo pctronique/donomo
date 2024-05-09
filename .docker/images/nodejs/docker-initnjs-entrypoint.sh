@@ -5,10 +5,15 @@ then
     NODE_FOLDER_LOG=/var/log/docker/nodejs/
 fi
 
+echo "end construct" >> ${NODE_FOLDER_LOG}endconstruct.log
+
 /var/docker/nodejs/importdata.sh 2>> ${NODE_FOLDER_LOG}installdata.log
 
-/var/docker/nodejs/createProject.sh 2>> ${NODE_FOLDER_LOG}initnodejs.log
+crontab /etc/cron.d/dockercron
 
-echo "end construct" >> ${NODE_FOLDER_LOG}endconstruct.log
+touch ${NODE_FOLDER_LOG}cron.log
+cron && tail -f ${NODE_FOLDER_LOG}cron.log &
+
+/var/docker/nodejs/createProject.sh 2>> ${NODE_FOLDER_LOG}initnodejs.log
 
 exec "$@"
