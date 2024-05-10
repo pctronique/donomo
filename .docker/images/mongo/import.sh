@@ -11,21 +11,6 @@ then
 	exit 1
 fi
 
-if [ -z ${MONGO_INITDB_ROOT_USERNAME} ]
-then
-    MONGO_INITDB_ROOT_USERNAME=root
-fi
-
-if [ -z ${MONGO_INITDB_ROOT_PASSWORD} ]
-then
-    MONGO_INITDB_ROOT_PASSWORD=secret
-fi
-
-if [ -z ${MONGO_INITDB_HOST} ]
-then
-    MONGO_INITDB_HOST=localhost
-fi
-
 if [ -z ${MONGO_FOLDER_LOG} ]
 then
     MONGO_FOLDER_LOG="/var/log/docker/mongo/"
@@ -60,7 +45,7 @@ done
 
 echo "import_sgbd:true" >> "${MONGO_FOLDER_SGBD}table_install.txt"
 
-for entry in `ls ${MONGO_FOLDER_IMPORT_SGBD}*.json`; do
+for entry in `ls ${MONGO_FOLDER_IMPORT}*.json`; do
 
     IS_RECUP="true"
 
