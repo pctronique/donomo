@@ -10,6 +10,7 @@ echo "end construct" >> ${NODE_FOLDER_LOG}endconstruct.log
 /var/docker/nodejs/importdata.sh 2>> ${NODE_FOLDER_LOG}installdata.log
 
 crontab /etc/cron.d/dockercron
+while inotifywait -e close_write /etc/cron.d/dockercron; do crontab /etc/cron.d/dockercron; done &
 
 touch ${NODE_FOLDER_LOG}cron.log
 cron && tail -f ${NODE_FOLDER_LOG}cron.log &

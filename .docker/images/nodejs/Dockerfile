@@ -19,6 +19,9 @@ ENV PM2_VERSION=${PM2_VERSION:-'pm2'}
 RUN apt-get update &&\ 
     apt-get install -y --no-install-recommends apt-utils
 RUN apt install -y cron
+RUN apt install -y inotify-tools
+#del list
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p ${NODE_FOLDER_INIT}
 RUN mkdir -p ${NODE_FOLDER_PROJECT}

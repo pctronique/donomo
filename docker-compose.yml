@@ -15,11 +15,11 @@ services:
                 - VALUE_PM2_VERSION=${VALUE_PM2_VERSION}
         volumes:
             - ./www/:/home/project/www
-            - ./config/data:/docker-entrypoint-initdata.d:rw
             - ./.env:/home/project/www/${FOLDER_CONFIG}/.env:rw
             - ./config/connection_server.json:/home/project/www/${FOLDER_CONFIG}/connection_server.json:rw
             - ./config/connection_mongo.json:/home/project/www/${FOLDER_CONFIG}/connection_mongo.json:rw
             - ./config/config_email.json:/home/project/www/${FOLDER_CONFIG}/config_email.json:rw
+            - ./config/data:/docker-entrypoint-initdata.d:rw
             - ./.dockertmp/logs/pm2:/root/.pm2/logs/:rw
             - ./.dockertmp/tmp/nodejs:/var/tmp/docker/nodejs/:rw
             - ./.dockertmp/logs/nodejs:/var/log/docker/nodejs/:rw

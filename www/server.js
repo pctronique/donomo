@@ -25,7 +25,7 @@ app.get("/", function (req, res) {
 });
 
 // require("./exemples/sgbd");
-// require("./exemples/email");
+require("./exemples/email");
 
 // mise en route du serveur
 server.listen(connection_server.port, connection_server.host);
