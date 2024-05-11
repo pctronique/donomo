@@ -76,16 +76,15 @@ services:
 # Setup the mailhog container
 ###########################
     mailhog:
-        build: 
+        build:
             context: .docker/images/mailhog
             args:
-                - VALUE_MAILHOG_VERSION=${VALUE_MAILHOG_VERSION}
+                - VALUE_MHOG_VERSION=${VALUE_MAILHOG_VERSION}
         container_name: ${NAME_PROJECT}_mailhog
         restart: always
-        tty: false
-        privileged: false
         volumes:
             - ./.dockertmp/mailhog:/mailhog
+            - ./config/email_data:/docker-entrypoint-initdata.d:rw
         environment:
             - MH_STORAGE=maildir
             - MH_MAILDIR_PATH=/mailhog

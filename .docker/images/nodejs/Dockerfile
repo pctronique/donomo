@@ -18,8 +18,8 @@ ENV PM2_VERSION=${PM2_VERSION:-'pm2'}
 
 RUN apt-get update &&\ 
     apt-get install -y --no-install-recommends apt-utils
-RUN apt install -y cron
-RUN apt install -y inotify-tools
+RUN apt-get install -y cron
+RUN apt-get install -y inotify-tools
 #del list
 RUN rm -rf /var/lib/apt/lists/*
 
