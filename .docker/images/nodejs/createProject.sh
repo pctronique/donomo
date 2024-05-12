@@ -15,16 +15,6 @@ then
     NODE_FOLDER_INIT=/var/docker/nodejs/
 fi
 
-if [ ! -e ${NODE_FOLDER_PROJECT}ecosystem.config.js ]
-then
-  cp ${NODE_FOLDER_INIT}ecosystem.config.js ${NODE_FOLDER_PROJECT}ecosystem.config.js
-fi
-
-if [ ! -e ${NODE_FOLDER_PROJECT}ecosystem.config.js.example ]
-then
-  cp ${NODE_FOLDER_INIT}ecosystem.config.js ${NODE_FOLDER_PROJECT}ecosystem.config.js.example
-fi
-
 if [ ! -e ${NODE_FOLDER_PROJECT}package.json ]
 then
   cp ${NODE_FOLDER_INIT}package.json ${NODE_FOLDER_PROJECT}package.json

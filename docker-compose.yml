@@ -13,6 +13,7 @@ services:
             args:
                 - VALUE_NODEJS_VERSION=${VALUE_NODEJS_VERSION}
                 - VALUE_PM2_VERSION=${VALUE_PM2_VERSION}
+                - VALUE_PM2ROTATE_VERSION=${VALUE_PM2ROTATE_VERSION}
         volumes:
             - ./www/:/home/project/www
             - ./.env:/home/project/www/${FOLDER_CONFIG}/.env:rw
