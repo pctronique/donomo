@@ -46,20 +46,20 @@ COPY dockercron /etc/cron.d/dockercron
 RUN crontab /etc/cron.d/dockercron
 
 COPY modifname.sh ${NODE_FOLDER_INIT}
-RUN chmod +x ${NODE_FOLDER_INIT}modifname.sh
+RUN chmod +x ${NODE_FOLDER_INIT}/modifname.sh
 
 COPY createProject.sh ${NODE_FOLDER_INIT}
-RUN chmod +x ${NODE_FOLDER_INIT}createProject.sh
+RUN chmod +x ${NODE_FOLDER_INIT}/createProject.sh
 
 COPY packages_install.list ${NODE_FOLDER_INIT}
 COPY package.json ${NODE_FOLDER_INIT}
 #COPY ecosystem.config.js ${NODE_FOLDER_INIT}
 
 COPY importdata.sh ${NODE_FOLDER_INIT}
-RUN chmod +x ${NODE_FOLDER_INIT}importdata.sh
+RUN chmod +x ${NODE_FOLDER_INIT}/importdata.sh
 
 COPY updateProject.sh ${NODE_FOLDER_INIT}
-RUN chmod +x ${NODE_FOLDER_INIT}updateProject.sh
+RUN chmod +x ${NODE_FOLDER_INIT}/updateProject.sh
 
 COPY docker-initnjs-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-initnjs-entrypoint.sh
@@ -72,7 +72,7 @@ RUN update-rc.d startserver defaults
 RUN npm install -y --no-install-recommends ${PM2_VERSION} -g
 RUN pm2 install ${PM2LR_VERSION}
 
-RUN touch ${NODE_FOLDER_LOG}error.log
+RUN touch ${NODE_FOLDER_LOG}/error.log
 
 ENTRYPOINT ["docker-entrypoint.sh", "docker-initnjs-entrypoint.sh"]
 

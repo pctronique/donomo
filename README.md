@@ -293,3 +293,8 @@ VALUE_PM2ROTATE_VERSION=
 VALUE_MONGOEXP_VERSION=latest
 VALUE_MAILHOG_VERSION=latest
 ```
+
+> [!NOTE]
+> Pour un nouveau projet : supprimer les fichiers « ./www/package.json » et « ./www/package.json.example ».
+> 
+> Pour un projet existant : mettre à jour les package nodejs.

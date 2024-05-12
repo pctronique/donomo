@@ -30,23 +30,10 @@ then
     NODE_NAME_JS_SERVER=server.js
 fi
 
-FILE_PACKAGE="${NODE_FOLDER_INIT}package.json"
-
-sed -i "s/name_project/${NODE_NAME_PROJECT}/" $FILE_PACKAGE
-sed -i "s/file_server/${NODE_NAME_JS_SERVER}/" $FILE_PACKAGE
-
-if [ ! -e ${NODE_FOLDER_PROJECT}package.json ]
+if [ -e ${NODE_FOLDER_PROJECT}/package.json ]
 then
-    if [ -e ${NODE_FOLDER_PROJECT}package.json.example ]
-    then
-        cp ${NODE_FOLDER_PROJECT}package.json.example ${NODE_FOLDER_PROJECT}package.json
-    fi
-fi
-
-if [ -e ${NODE_FOLDER_PROJECT}package.json ]
-then
-    sed -i "s/name_project/${NODE_NAME_PROJECT}/" "${NODE_FOLDER_PROJECT}package.json"
-    sed -i "s/file_server/${NODE_NAME_JS_SERVER}/" "${NODE_FOLDER_PROJECT}package.json"
+    sed -i "s/name_project/${NODE_NAME_PROJECT}/" "${NODE_FOLDER_PROJECT}/package.json"
+    sed -i "s/file_server/${NODE_NAME_JS_SERVER}/" "${NODE_FOLDER_PROJECT}/package.json"
 fi
 
 exit 0

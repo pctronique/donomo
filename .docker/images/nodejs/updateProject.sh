@@ -21,4 +21,4 @@ then
 fi
 
 cd ${NODE_FOLDER_PROJECT}
-pm2 $@ ${NODE_NAME_JS_SERVER} --watch --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z" -o ${NODE_FOLDER_LOG}nodejs_out.log -e ${NODE_FOLDER_LOG}nodejs_err.log
+pm2 $@ ${NODE_NAME_JS_SERVER} --watch --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z" -o ${NODE_FOLDER_LOG}/nodejs_out.log -e ${NODE_FOLDER_LOG}/nodejs_err.log
