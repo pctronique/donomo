@@ -10,6 +10,6 @@ then
     MONGO_FOLDER_INIT="/var/docker/mongo/"
 fi
 
-${MONGO_FOLDER_INIT}import.sh 2>> ${MONGO_FOLDER_LOG}installdatasgbd.log &
+${MONGO_FOLDER_INIT}/import.sh 2>> ${MONGO_FOLDER_LOG}/installdatasgbd.log &
 
 exec "$@"

@@ -14,7 +14,7 @@ RUN mkdir -p ${MONGO_FOLDER_INIT}
 RUN mkdir -p ${MONGO_FOLDER_LOG}
 
 COPY import.sh ${MONGO_FOLDER_INIT}
-RUN chmod +x ${MONGO_FOLDER_INIT}import.sh
+RUN chmod +x ${MONGO_FOLDER_INIT}/import.sh
 
 COPY docker-datasgbd-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-datasgbd-entrypoint.sh

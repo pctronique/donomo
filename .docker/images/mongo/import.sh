@@ -31,7 +31,7 @@ then
     MONGO_INITDB_DATABASE="project"
 fi
 
-if [ -f "${MONGO_FOLDER_SGBD}table_install.txt" ]
+if [ -f "${MONGO_FOLDER_SGBD}/table_install.txt" ]
 then
     exit 0
 fi
@@ -39,11 +39,11 @@ fi
 msgconn=$(mongodump -u=${MONGO_INITDB_ROOT_USERNAME} -p=${MONGO_INITDB_ROOT_PASSWORD} -h=mongo --authenticationDatabase=admin 2>&1)
 
 while [  $msgconn == *"Failed"* ]; do
-    echo "Failed" >> ${MONGO_FOLDER_LOG}failed.log
+    echo "Failed" >> ${MONGO_FOLDER_LOG}/failed.log
     sleep 0.2
 done
 
-echo "import_sgbd:true" >> "${MONGO_FOLDER_SGBD}table_install.txt"
+echo "import_sgbd:true" >> "${MONGO_FOLDER_SGBD}/table_install.txt"
 
 for entry in `ls ${MONGO_FOLDER_IMPORT}*.json`; do
 
@@ -83,7 +83,7 @@ for entry in `ls ${MONGO_FOLDER_IMPORT}*.json`; do
         fi
 
         mongoimport -u=${MONGO_INITDB_ROOT_USERNAME} -p=${MONGO_INITDB_ROOT_PASSWORD} -h=mongo --authenticationDatabase=admin --db ${MONGO_INITDB_DATABASE} --collection ${nameTabSGBD} --type json --file ${entry} --jsonArray
-        echo "$entry" >> "${MONGO_FOLDER_SGBD}table_install.txt"
+        echo "$entry" >> "${MONGO_FOLDER_SGBD}/table_install.txt"
 
     fi
 done
