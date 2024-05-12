@@ -15,8 +15,8 @@ then
     MH_FOLDER_INIT_DATA="/docker-entrypoint-initdata.d/"
 fi
 
-if [ ! -z "$(ls -A ${MH_FOLDER_INIT_DATA})" ]; then
-    cp -r ${MH_FOLDER_INIT_DATA}/* "${MH_MAILDIR_PATH}/" 2>> ${MH_FOLDER_LOG}installdata.log
+if [ ! -z "$(ls -A ${MH_FOLDER_INIT_DATA}/*@mailhog.example)" ]; then
+    cp -r ${MH_FOLDER_INIT_DATA}/*@mailhog.example "${MH_MAILDIR_PATH}/" 2>> ${MH_FOLDER_LOG}installdata.log
 fi
 
 exit 0
