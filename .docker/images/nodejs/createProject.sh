@@ -27,7 +27,7 @@ then
     do   
       if [ ! -z "$line" ]
       then
-        npm install $line 2&>> ${NODE_FOLDER_LOG}/initnodejs.log
+        npm install $line >> ${NODE_FOLDER_LOG}/initnodejs.log 2>> ${NODE_FOLDER_LOG}/initnodejs.log
       fi
     done < ${NODE_FOLDER_INIT}/packages_install.list
   fi
@@ -43,7 +43,7 @@ then
 
 fi
 
-npm install
+npm install >> ${NODE_FOLDER_LOG}/initnodejs.log 2>> ${NODE_FOLDER_LOG}/initnodejs.log
 
 touch ${NODE_FOLDER_LOG}/error.log
 
