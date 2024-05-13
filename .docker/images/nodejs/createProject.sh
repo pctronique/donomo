@@ -19,8 +19,6 @@ if [ ! -e ${NODE_FOLDER_PROJECT}/package.json ] && [ ! -e ${NODE_FOLDER_PROJECT}
 then
   cp ${NODE_FOLDER_INIT}/package.json ${NODE_FOLDER_PROJECT}/package.json
 
-  cd ${NODE_FOLDER_PROJECT}
-
   if [ -e ${NODE_FOLDER_INIT}/packages_install.list ]
   then
     while read line  
@@ -32,16 +30,16 @@ then
     done < ${NODE_FOLDER_INIT}/packages_install.list
   fi
 
-  cp ${NODE_FOLDER_PROJECT}/package.json ${NODE_FOLDER_PROJECT}/package.json.example
+  #cp ${NODE_FOLDER_PROJECT}/package.json ${NODE_FOLDER_PROJECT}/package.json.example
 
 fi
 
-if [ ! -e ${NODE_FOLDER_PROJECT}/package.json ] && [ -e ${NODE_FOLDER_PROJECT}/package.json.example ]
-then
+#if [ ! -e ${NODE_FOLDER_PROJECT}/package.json ] && [ -e ${NODE_FOLDER_PROJECT}/package.json.example ]
+#then
 
-  cp ${NODE_FOLDER_PROJECT}/package.json.example ${NODE_FOLDER_PROJECT}/package.json
+#  cp ${NODE_FOLDER_PROJECT}/package.json.example ${NODE_FOLDER_PROJECT}/package.json
 
-fi
+#fi
 
 npm install >> ${NODE_FOLDER_LOG}/initnodejs.log 2>> ${NODE_FOLDER_LOG}/initnodejs.log
 
