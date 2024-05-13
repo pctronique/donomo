@@ -43,7 +43,7 @@ then
 
 fi
 
-npm install 2&>> ${NODE_FOLDER_LOG}/initnodejs.log
+npm install
 
 touch ${NODE_FOLDER_LOG}/error.log
 
