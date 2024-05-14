@@ -14,7 +14,6 @@ ENV NODE_FOLDER_INIT_DATA="/docker-entrypoint-initdata.d/"
 ARG VALUE_NODEJS_VERSION
 ENV DEF_NODEJSX_VERSION=${VALUE_NODEJS_VERSION}
 
-
 ENV DEF_NODEJSPM2_VERSION=${VALUE_NODEJS_VERSION:-"5.3.1"}
 ENV DEF_NODEJSPM2_VERSION=${DEF_NODEJSPM2_VERSION##${DEF_NODEJSX_VERSION}}
 ARG VALUE_PM2_VERSION
@@ -29,8 +28,7 @@ ENV DEF_PM2LR_VERSION=${DEF_NODEJSPM2LR_VERSION:-"${VALUE_PM2ROTATE_VERSION}"}
 ENV PM2LR_VERSION=${DEF_PM2LR_VERSION:+"pm2-logrotate@${DEF_PM2LR_VERSION}"}
 ENV PM2LR_VERSION=${PM2LR_VERSION:-'pm2-logrotate'}
 
-RUN apt-get update &&\ 
-    apt-get install -y --no-install-recommends apt-utils
+RUN apt-get update
 RUN apt-get install -y cron
 RUN apt-get install -y inotify-tools
 #del list
@@ -50,7 +48,6 @@ RUN chmod +x ${NODE_FOLDER_INIT}/createProject.sh
 
 COPY packages_install.list ${NODE_FOLDER_INIT}
 COPY package.json ${NODE_FOLDER_INIT}
-#COPY ecosystem.config.js ${NODE_FOLDER_INIT}
 
 COPY importdata.sh ${NODE_FOLDER_INIT}
 RUN chmod +x ${NODE_FOLDER_INIT}/importdata.sh
