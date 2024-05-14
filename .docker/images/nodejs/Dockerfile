@@ -9,6 +9,7 @@ ENV NODE_FOLDER_PROJECT="/home/project/www/"
 ENV NODE_FOLDER_LOG="/var/log/docker/nodejs/"
 ENV NODE_FOLDER_TMP="/var/tmp/docker/nodejs/"
 ENV NODE_FOLDER_INIT="/var/docker/nodejs/"
+ENV CRON_FOLDER_INIT="/var/docker/cron/"
 ENV NODE_FOLDER_INIT_DATA="/docker-entrypoint-initdata.d/"
 
 ARG VALUE_NODEJS_VERSION
@@ -39,6 +40,7 @@ RUN mkdir -p ${NODE_FOLDER_PROJECT}
 RUN mkdir -p ${NODE_FOLDER_LOG}
 RUN mkdir -p ${NODE_FOLDER_INIT_DATA}
 RUN mkdir -p ${NODE_FOLDER_TMP}
+RUN mkdir -p ${CRON_FOLDER_INIT}
 
 COPY modifname.sh ${NODE_FOLDER_INIT}
 RUN chmod +x ${NODE_FOLDER_INIT}/modifname.sh
@@ -55,12 +57,12 @@ RUN chmod +x ${NODE_FOLDER_INIT}/importdata.sh
 COPY updateProject.sh ${NODE_FOLDER_INIT}
 RUN chmod +x ${NODE_FOLDER_INIT}/updateProject.sh
 
-COPY dockercron ${NODE_FOLDER_INIT}
+COPY dockercron ${CRON_FOLDER_INIT}
 COPY dockercron /etc/cron.d/dockercron
 RUN crontab /etc/cron.d/dockercron
 
-COPY cronauto.sh ${NODE_FOLDER_INIT}
-RUN chmod +x ${NODE_FOLDER_INIT}/cronauto.sh
+COPY cronauto.sh ${CRON_FOLDER_INIT}
+RUN chmod +x ${CRON_FOLDER_INIT}/cronauto.sh
 
 COPY docker-initnjs-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-initnjs-entrypoint.sh

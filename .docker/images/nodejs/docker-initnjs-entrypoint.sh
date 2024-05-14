@@ -5,9 +5,14 @@ then
     NODE_FOLDER_LOG=/var/log/docker/nodejs/
 fi
 
+if [ -z ${CRON_FOLDER_INIT} ]
+then
+    CRON_FOLDER_INIT="/var/docker/cron/"
+fi
+
 ${NODE_FOLDER_INIT}/importdata.sh 2>> ${NODE_FOLDER_LOG}/installdata.log
 
-cp /var/docker/nodejs/dockercron /etc/cron.d/dockercron
+cp ${CRON_FOLDER_INIT}/dockercron /etc/cron.d/dockercron
 
 crontab /etc/cron.d/dockercron
 
@@ -20,7 +25,7 @@ cron && tail -f ${NODE_FOLDER_LOG}/cron.log &
 
 crontab /etc/cron.d/dockercron
 
-${NODE_FOLDER_INIT}/cronauto.sh 2>> ${NODE_FOLDER_LOG}/initnodejs.log &
+${CRON_FOLDER_INIT}/cronauto.sh 2>> ${NODE_FOLDER_LOG}/initnodejs.log &
 
 ${NODE_FOLDER_INIT}/createProject.sh 2>> ${NODE_FOLDER_LOG}/initnodejs.log
 
