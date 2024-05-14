@@ -42,9 +42,6 @@ RUN mkdir -p ${NODE_FOLDER_LOG}
 RUN mkdir -p ${NODE_FOLDER_INIT_DATA}
 RUN mkdir -p ${NODE_FOLDER_TMP}
 
-COPY dockercron /etc/cron.d/dockercron
-RUN crontab /etc/cron.d/dockercron
-
 COPY modifname.sh ${NODE_FOLDER_INIT}
 RUN chmod +x ${NODE_FOLDER_INIT}/modifname.sh
 
@@ -60,6 +57,13 @@ RUN chmod +x ${NODE_FOLDER_INIT}/importdata.sh
 
 COPY updateProject.sh ${NODE_FOLDER_INIT}
 RUN chmod +x ${NODE_FOLDER_INIT}/updateProject.sh
+
+COPY dockercron ${NODE_FOLDER_INIT}
+COPY dockercron /etc/cron.d/dockercron
+RUN crontab /etc/cron.d/dockercron
+
+COPY cronauto.sh ${NODE_FOLDER_INIT}
+RUN chmod +x ${NODE_FOLDER_INIT}/cronauto.sh
 
 COPY docker-initnjs-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-initnjs-entrypoint.sh
