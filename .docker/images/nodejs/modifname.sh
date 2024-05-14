@@ -28,10 +28,14 @@ VAR_START_REPL="\"start\": \"node ${NODE_NAME_JS_SERVER}\""
 
 if [ -e ${NODE_FOLDER_PROJECT}/package.json ]
 then
-  sed -i "s/${VAR_NAME_DEF}/${VAR_NAME_REPL}/" "${NODE_FOLDER_PROJECT}/package-lock.json"
   sed -i "s/${VAR_NAME_DEF}/${VAR_NAME_REPL}/" "${NODE_FOLDER_PROJECT}/package.json"
   sed -i "s/${VAR_SERVER_DEF}/${VAR_SERVER_REPL}/" "${NODE_FOLDER_PROJECT}/package.json"
   sed -i "s/${VAR_START_DEF}/${VAR_START_REPL}/" "${NODE_FOLDER_PROJECT}/package.json"
+fi
+
+if [ -e ${NODE_FOLDER_PROJECT}/package-lock.json ]
+then
+  sed -i "s/${VAR_NAME_DEF}/${VAR_NAME_REPL}/" "${NODE_FOLDER_PROJECT}/package-lock.json"
 fi
 
 exit 0
